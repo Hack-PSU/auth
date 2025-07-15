@@ -39,6 +39,7 @@ function LoginForm() {
   const {
     user,
     login,
+    signup,
     loginGoogle,
     loginGithub,
     loginMicrosoft,
@@ -74,8 +75,13 @@ function LoginForm() {
     setLoginError("");
     setResetSuccess("");
     try {
-      await login(data.email, data.password);
-      // router.push handled by effect
+      try {
+        await login(data.email, data.password);
+        // router.push handled by effect
+      } catch (err) {
+        console.error("Login failed, trying signup:", err);
+        signup(data.email, data.password);
+      }
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
       console.error(err);

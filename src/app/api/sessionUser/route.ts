@@ -3,9 +3,7 @@ import admin from "@/lib/firebaseAdmin";
 
 // CORS headers for HackPSU subdomains
 function setCorsHeaders(response: NextResponse, origin?: string) {
-  const allowedOrigins = [
-    "https://hackpsu.org",
-  ];
+  const allowedOrigins = ["https://hackpsu.org"];
 
   const isAllowed =
     origin &&
