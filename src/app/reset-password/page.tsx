@@ -87,8 +87,7 @@ function ResetPasswordForm() {
     try {
       await confirmPasswordReset(auth, oobCode, newPassword);
       setStep("done");
-    } catch (e: any) {
-      // eslint-disable-line @typescript-eslint/no-explicit-any
+    } catch (e: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       console.error(e);
       let errorMessage = "Failed to reset password. Please try again.";
 

@@ -5,12 +5,6 @@ import admin from "@/lib/firebaseAdmin";
 function setCorsHeaders(response: NextResponse, origin?: string) {
   const allowedOrigins = [
     "https://hackpsu.org",
-    "https://www.hackpsu.org",
-    "https://auth.hackpsu.org",
-    "https://sponsor.hackpsu.org",
-    "https://admin.hackpsu.org",
-    "https://team.hackpsu.org",
-    "https://api.hackpsu.org",
   ];
 
   const isAllowed =
