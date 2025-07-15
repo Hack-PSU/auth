@@ -1,0 +1,21 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "branchPrefix": "renovate/",
+  "prConcurrentLimit": 10,
+  "prHourlyLimit": 0,
+  "labels": ["dependencies", "renovate"],
+  "timezone": "America/New_York",
+  "schedule": ["* 0-23 * * *"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["on Sunday"]
+  },
+  "packageRules": [
+    {
+      "description": "Automerge non-major updates when tests pass",
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    }
+  ]
+}
