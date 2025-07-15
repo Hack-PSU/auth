@@ -3,10 +3,16 @@ import admin from "@/lib/firebaseAdmin";
 
 // CORS headers for HackPSU subdomains
 function setCorsHeaders(response: NextResponse, origin?: string) {
-  // Allow all HackPSU subdomains
-  const allowedOrigins = ["https://hackpsu.org"];
+  const allowedOrigins = [
+    "https://hackpsu.org",
+    "https://www.hackpsu.org",
+    "https://auth.hackpsu.org",
+    "https://sponsor.hackpsu.org",
+    "https://admin.hackpsu.org",
+    "https://team.hackpsu.org",
+    "https://api.hackpsu.org",
+  ];
 
-  // Check if origin is allowed or allow all hackpsu.org subdomains
   const isAllowed =
     origin &&
     (allowedOrigins.includes(origin) || origin.endsWith(".hackpsu.org"));
@@ -21,7 +27,7 @@ function setCorsHeaders(response: NextResponse, origin?: string) {
     "Content-Type, Authorization",
   );
   response.headers.set("Access-Control-Allow-Credentials", "true");
-  response.headers.set("Access-Control-Max-Age", "86400"); // 24 hours
+  response.headers.set("Access-Control-Max-Age", "86400");
 
   return response;
 }
@@ -43,12 +49,33 @@ export async function GET(req: NextRequest) {
   }
 
   try {
+    // Verify the session cookie
     const decoded = await admin.auth().verifySessionCookie(cookie, true);
-    const customToken = await admin.auth().createCustomToken(decoded.uid);
+    console.log("Session cookie verified for user:", decoded.email);
+
+    // Get the user record to access custom claims
+    const userRecord = await admin.auth().getUser(decoded.uid);
+    console.log("User custom claims:", userRecord.customClaims);
+
+    // Create custom token with role claims
+    const additionalClaims = {
+      // Include existing custom claims from the user record
+      ...userRecord.customClaims,
+      // Add role claims if they don't exist (you can set default roles here)
+      production: userRecord.customClaims?.production ?? 0, // Default to Role.NONE
+      staging: userRecord.customClaims?.staging ?? 0, // Default to Role.NONE
+    };
+
+    console.log("Creating custom token with claims:", additionalClaims);
+
+    const customToken = await admin
+      .auth()
+      .createCustomToken(decoded.uid, additionalClaims);
 
     const response = NextResponse.json({ customToken });
     return setCorsHeaders(response, origin || undefined);
-  } catch {
+  } catch (error) {
+    console.error("Session verification failed:", error);
     const response = NextResponse.redirect("https://auth.hackpsu.org");
     return setCorsHeaders(response, origin || undefined);
   }
