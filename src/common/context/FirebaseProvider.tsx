@@ -1,18 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import React, {
+
+import type React from "react";
+import {
   createContext,
   useContext,
   useEffect,
   useState,
   useCallback,
   useMemo,
-  FC,
+  type FC,
 } from "react";
 import {
-  Auth,
-  User,
+  type Auth,
+  type User,
   getIdToken,
   onAuthStateChanged,
   onIdTokenChanged,
@@ -31,11 +33,11 @@ import { auth } from "@/common/config/firebase"; // use shared auth
 // Internal role definitions (used for permission checking only)
 enum Role {
   NONE = 0,
-  VOLUNTEER,
-  TEAM,
-  EXEC,
-  TECH,
-  FINANCE,
+  VOLUNTEER = 1,
+  TEAM = 2,
+  EXEC = 3,
+  TECH = 4,
+  FINANCE = 5,
 }
 
 const MINIMUM_ROLE = Role.NONE; // adjust as needed
@@ -44,6 +46,7 @@ const MINIMUM_ROLE = Role.NONE; // adjust as needed
 function extractAuthToken(token: string) {
   return token.startsWith("Bearer ") ? token.slice(7) : token;
 }
+
 function getRole(token: string): number {
   try {
     const decoded: any = jwtDecode(extractAuthToken(token));
@@ -72,6 +75,7 @@ type FirebaseContextType = {
 const FirebaseContext = createContext<FirebaseContextType | null>(null);
 
 type Props = { children: React.ReactNode };
+
 export const FirebaseProvider: FC<Props> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | undefined>(undefined);
@@ -123,6 +127,7 @@ export const FirebaseProvider: FC<Props> = ({ children }) => {
 
     const unsubA = onAuthStateChanged(auth, handle);
     const unsubT = onIdTokenChanged(auth, handle);
+
     return () => {
       unsubA();
       unsubT();
@@ -186,8 +191,12 @@ export const FirebaseProvider: FC<Props> = ({ children }) => {
   const resetPassword = useCallback(async (email: string) => {
     setError(undefined);
     try {
+      // Construct the full URL including any returnTo parameters
+      const currentUrl = new URL(window.location.href);
+      const continueUrl = currentUrl.toString();
+
       await sendPasswordResetEmail(auth, email, {
-        url: window.location.origin,
+        url: continueUrl,
       });
     } catch (e: any) {
       setError(e.message);
