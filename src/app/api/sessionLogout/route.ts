@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { serialize } from "cookie";
+import admin from "@/lib/firebaseAdmin";
 
 // CORS headers for HackPSU subdomains
 function setCorsHeaders(response: NextResponse, origin?: string) {
@@ -33,19 +34,66 @@ export async function OPTIONS(req: NextRequest) {
 export async function POST(req: NextRequest) {
   const origin = req.headers.get("origin");
 
-  const cookieHeader = serialize("__session", "", {
-    maxAge: 0,
-    path: "/",
-    domain: ".hackpsu.org",
-  });
+  // Get the current session cookie to revoke it properly
+  const sessionCookie = req.cookies.get("__session")?.value;
+
+  // If there's a valid session, revoke it on Firebase Admin
+  if (sessionCookie) {
+    try {
+      console.log("Revoking Firebase session...");
+      const decodedClaims = await admin
+        .auth()
+        .verifySessionCookie(sessionCookie, true);
+      await admin.auth().revokeRefreshTokens(decodedClaims.uid);
+      console.log("Firebase session revoked for user:", decodedClaims.uid);
+    } catch (error) {
+      console.log("Session cookie already invalid or expired:", error);
+    }
+  }
+
+  // Create comprehensive cookie deletion headers
+  const deleteCookieHeaders = [
+    // Primary deletion - match original cookie exactly
+    serialize("__session", "", {
+      maxAge: -1,
+      expires: new Date(0),
+      path: "/",
+      domain: ".hackpsu.org",
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    }),
+    // Delete on current domain (auth.hackpsu.org)
+    serialize("__session", "", {
+      maxAge: -1,
+      expires: new Date(0),
+      path: "/",
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    }),
+    // Create a logout flag cookie to prevent auto re-authentication
+    serialize("__logout", "true", {
+      maxAge: 30, // 30 seconds should be enough
+      path: "/",
+      domain: ".hackpsu.org",
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    }),
+  ];
+
+  console.log("Logout completed, cookies deleted and Firebase session revoked");
 
   const response = NextResponse.json(
-    { logout: true },
+    { logout: true, message: "Session cleared successfully" },
     {
       status: 200,
-      headers: { "Set-Cookie": cookieHeader },
     },
   );
+  deleteCookieHeaders.forEach((cookie) => {
+    response.headers.append("Set-Cookie", cookie);
+  });
 
   return setCorsHeaders(response, origin || undefined);
 }
