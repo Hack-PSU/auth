@@ -25,6 +25,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import Image from "next/image";
+import { set } from "zod";
 
 interface FormData {
   email: string;
@@ -79,13 +80,16 @@ function LoginForm() {
         await login(data.email, data.password);
         // router.push handled by effect
       } catch (err) {
+        const msg = err instanceof Error ? err.message : String(err);
+        setLoginError(msg);
         console.error("Login failed, trying signup:", err);
         signup(data.email, data.password);
+
       }
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
       console.error(err);
-      setLoginError(msg);
+      // setLoginError(msg);
     }
     setProcessing(false);
   };
