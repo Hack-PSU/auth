@@ -29,6 +29,7 @@ import {
 } from "firebase/auth";
 import { jwtDecode } from "jwt-decode";
 import { auth } from "@/common/config/firebase"; // use shared auth
+import posthog from 'posthog-js';
 
 // Internal role definitions (used for permission checking only)
 enum Role {
@@ -139,6 +140,9 @@ export const FirebaseProvider: FC<Props> = ({ children }) => {
     setError(undefined);
     try {
       const cred = await signInWithEmailAndPassword(auth, email, pass);
+      posthog.identify(cred.user.uid, {
+        email: cred.user.email || undefined,
+      });
       // session established by listener
     } catch (e: any) {
       setError(e.message);
@@ -150,6 +154,9 @@ export const FirebaseProvider: FC<Props> = ({ children }) => {
     setError(undefined);
     try {
       const cred = await createUserWithEmailAndPassword(auth, email, pass);
+      posthog.identify(cred.user.uid, {
+        email: cred.user.email || undefined,
+      });
     } catch (e: any) {
       setError(e.message);
       throw e;
@@ -160,6 +167,9 @@ export const FirebaseProvider: FC<Props> = ({ children }) => {
     setError(undefined);
     try {
       const cred = await signInWithPopup(auth, new GoogleAuthProvider());
+      posthog.identify(cred.user.uid, {
+        email: cred.user.email || undefined,
+      });
     } catch (e: any) {
       setError(e.message);
       throw e;
@@ -170,6 +180,9 @@ export const FirebaseProvider: FC<Props> = ({ children }) => {
     setError(undefined);
     try {
       const cred = await signInWithPopup(auth, new GithubAuthProvider());
+      posthog.identify(cred.user.uid, {
+        email: cred.user.email || undefined,
+      });
     } catch (e: any) {
       setError(e.message);
       throw e;
@@ -182,6 +195,9 @@ export const FirebaseProvider: FC<Props> = ({ children }) => {
       const provider = new OAuthProvider("microsoft.com");
       provider.setCustomParameters({ prompt: "select_account" });
       const cred = await signInWithPopup(auth, provider);
+      posthog.identify(cred.user.uid, {
+        email: cred.user.email || undefined,
+      });
     } catch (e: any) {
       setError(e.message);
       throw e;
@@ -210,6 +226,7 @@ export const FirebaseProvider: FC<Props> = ({ children }) => {
     try {
       await signOut(auth);
       await clearSession();
+      posthog.reset();
     } catch (e: any) {
       setError(e.message);
       throw e;
