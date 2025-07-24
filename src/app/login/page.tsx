@@ -147,7 +147,7 @@ function LoginForm() {
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">
             Welcome back
           </h1>
-          <p className="text-gray-600">Sign in to your HackPSU account</p>
+          <p className="text-gray-600">Sign in or create an account</p>
         </div>
       </div>
 
