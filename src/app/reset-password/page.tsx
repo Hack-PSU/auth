@@ -40,9 +40,7 @@ function ResetPasswordForm() {
   >("verifying");
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -70,11 +68,6 @@ function ResetPasswordForm() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!oobCode) return;
-
-    if (newPassword !== confirmPassword) {
-      setError("Passwords do not match.");
-      return;
-    }
 
     if (newPassword.length < 6) {
       setError("Password must be at least 6 characters long.");
@@ -298,50 +291,11 @@ function ResetPasswordForm() {
               </div>
             </div>
 
-            {/* Confirm Password Field */}
-            <div className="space-y-2">
-              <Label
-                htmlFor="confirm-password"
-                className="text-sm font-medium text-gray-700"
-              >
-                Confirm New Password
-              </Label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <Input
-                  id="confirm-password"
-                  type={showConfirmPassword ? "text" : "password"}
-                  required
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Confirm your new password"
-                  className="pl-10 pr-12 h-12 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                  disabled={step === "submitting"}
-                  minLength={6}
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword((prev) => !prev)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-                  aria-label={
-                    showConfirmPassword ? "Hide password" : "Show password"
-                  }
-                >
-                  {showConfirmPassword ? (
-                    <EyeOff className="h-4 w-4" />
-                  ) : (
-                    <Eye className="h-4 w-4" />
-                  )}
-                </button>
-              </div>
-            </div>
 
             <div className="space-y-3 pt-2">
               <Button
                 type="submit"
-                disabled={
-                  step === "submitting" || !newPassword || !confirmPassword
-                }
+                disabled={step === "submitting" || !newPassword}
                 className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors"
               >
                 {step === "submitting" ? (
