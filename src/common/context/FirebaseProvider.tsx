@@ -29,7 +29,7 @@ import {
 } from "firebase/auth";
 import { jwtDecode } from "jwt-decode";
 import { auth } from "@/common/config/firebase"; // use shared auth
-import posthog from 'posthog-js';
+import posthog from "posthog-js";
 
 // Internal role definitions (used for permission checking only)
 enum Role {

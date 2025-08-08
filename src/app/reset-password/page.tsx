@@ -80,16 +80,21 @@ function ResetPasswordForm() {
     try {
       await confirmPasswordReset(auth, oobCode, newPassword);
       setStep("done");
-    } catch (e: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
+    } catch (e: unknown) {
       console.error(e);
       let errorMessage = "Failed to reset password. Please try again.";
 
-      if (e.code === "auth/weak-password") {
-        errorMessage = "Please choose a stronger password.";
-      } else if (e.code === "auth/expired-action-code") {
-        errorMessage = "This reset link has expired. Please request a new one.";
-      } else if (e.code === "auth/invalid-action-code") {
-        errorMessage = "This reset link is invalid. Please request a new one.";
+      if (e && typeof e === "object" && "code" in e) {
+        const firebaseError = e as { code: string };
+        if (firebaseError.code === "auth/weak-password") {
+          errorMessage = "Please choose a stronger password.";
+        } else if (firebaseError.code === "auth/expired-action-code") {
+          errorMessage =
+            "This reset link has expired. Please request a new one.";
+        } else if (firebaseError.code === "auth/invalid-action-code") {
+          errorMessage =
+            "This reset link is invalid. Please request a new one.";
+        }
       }
 
       setError(errorMessage);
@@ -290,7 +295,6 @@ function ResetPasswordForm() {
                 </button>
               </div>
             </div>
-
 
             <div className="space-y-3 pt-2">
               <Button
