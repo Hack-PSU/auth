@@ -28,46 +28,82 @@ export async function POST(request: NextRequest) {
       const existingUser = await admin.auth().getUserByEmail(email);
       uid = existingUser.uid;
       userExists = true;
+
+      // Check for existing WebAuthn credentials
+      const credentialsSnapshot = await db
+        .collection("users")
+        .doc(uid)
+        .collection("webauthn-credentials")
+        .get();
+
+      const hasCredentials = !credentialsSnapshot.empty;
+
+      if (hasCredentials) {
+        // User has credentials, generate authentication options
+        const allowCredentials = credentialsSnapshot.docs.map((doc) => ({
+          id: doc.data().credentialID,
+          type: "public-key" as const,
+          transports: doc.data().transports,
+        }));
+
+        const options = await generateAuthenticationOptions({
+          rpID,
+          allowCredentials,
+          userVerification: "preferred",
+        });
+
+        // Store session data for authentication
+        const cookieStore = await cookies();
+        cookieStore.set("webauthn-challenge", options.challenge, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "strict",
+          maxAge: 300, // 5 minutes
+        });
+
+        cookieStore.set("webauthn-user-id", uid, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "strict",
+          maxAge: 300, // 5 minutes
+        });
+
+        cookieStore.set("webauthn-flow", "authentication", {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "strict",
+          maxAge: 300, // 5 minutes
+        });
+
+        return NextResponse.json({
+          ...options,
+          flow: "authentication",
+          isNewUser: false,
+          message: "Use your passkey to sign in",
+        });
+      } else {
+        // Existing user without passkeys - they need to sign in first
+        return NextResponse.json(
+          {
+            error:
+              "Please sign in with your password first, then add a passkey from your dashboard",
+            requireAuth: true,
+          },
+          { status: 401 },
+        );
+      }
     } catch (error) {
-      // User doesn't exist, create them for potential registration
+      // User doesn't exist - allow new user registration with passkey
       const newUser = await admin.auth().createUser({
         email,
         displayName: email,
-        emailVerified: true,
+        emailVerified: true, // For passkey users, we consider them verified
       });
       uid = newUser.uid;
       isNewUser = true;
-    }
 
-    // Check for existing WebAuthn credentials
-    const credentialsSnapshot = await db
-      .collection("users")
-      .doc(uid)
-      .collection("webauthn-credentials")
-      .get();
-
-    const hasCredentials = !credentialsSnapshot.empty;
-    let options;
-    let flow: "authentication" | "registration";
-
-    if (hasCredentials) {
-      // User has credentials, generate authentication options
-      flow = "authentication";
-      const allowCredentials = credentialsSnapshot.docs.map((doc) => ({
-        id: doc.data().credentialID,
-        type: "public-key" as const,
-        transports: doc.data().transports,
-      }));
-
-      options = await generateAuthenticationOptions({
-        rpID,
-        allowCredentials,
-        userVerification: "preferred",
-      });
-    } else {
-      // No credentials, generate registration options
-      flow = "registration";
-      options = await generateRegistrationOptions({
+      // Generate registration options for new user
+      const options = await generateRegistrationOptions({
         rpName,
         rpID,
         userName: email,
@@ -80,40 +116,37 @@ export async function POST(request: NextRequest) {
         },
         supportedAlgorithmIDs: [-7, -257],
       });
+
+      // Store session data for registration
+      const cookieStore = await cookies();
+      cookieStore.set("webauthn-challenge", options.challenge, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: 300, // 5 minutes
+      });
+
+      cookieStore.set("webauthn-user-id", uid, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: 300, // 5 minutes
+      });
+
+      cookieStore.set("webauthn-flow", "registration", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: 300, // 5 minutes
+      });
+
+      return NextResponse.json({
+        ...options,
+        flow: "registration",
+        isNewUser: true,
+        message: "Create your first passkey to get started",
+      });
     }
-
-    // Store session data
-    const cookieStore = await cookies();
-    cookieStore.set("webauthn-challenge", options.challenge, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 300, // 5 minutes
-    });
-
-    cookieStore.set("webauthn-user-id", uid, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 300, // 5 minutes
-    });
-
-    cookieStore.set("webauthn-flow", flow, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 300, // 5 minutes
-    });
-
-    return NextResponse.json({
-      ...options,
-      flow,
-      isNewUser,
-      message:
-        flow === "authentication"
-          ? "Use your passkey to sign in"
-          : "Create a new passkey to get started",
-    });
   } catch (error) {
     console.error("Error generating options:", error);
     return NextResponse.json(

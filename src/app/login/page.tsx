@@ -155,6 +155,13 @@ function LoginForm() {
         // Firebase auth state will update automatically, no need to reload
       } else {
         setLoginError(result.error || "Authentication failed");
+
+        // If the error is about requiring authentication, provide helpful context
+        if (result.requireAuth) {
+          setLoginError(
+            "This account exists but doesn't have any passkeys yet. Please sign in with your password first, then you can add a passkey from your dashboard.",
+          );
+        }
       }
     } catch (error) {
       const msg = error instanceof Error ? error.message : String(error);
