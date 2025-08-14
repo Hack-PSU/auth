@@ -2,13 +2,15 @@ import { type NextRequest, NextResponse } from "next/server";
 import { serialize } from "cookie";
 import admin from "@/lib/firebaseAdmin";
 
-// CORS headers for HackPSU subdomains
+// CORS headers for HackPSU subdomains and Vercel preview domains
 function setCorsHeaders(response: NextResponse, origin?: string) {
   const allowedOrigins = ["https://hackpsu.org"];
 
   const isAllowed =
     origin &&
-    (allowedOrigins.includes(origin) || origin.endsWith(".hackpsu.org"));
+    (allowedOrigins.includes(origin) ||
+      origin.endsWith(".hackpsu.org") ||
+      origin.endsWith(".vercel.app"));
 
   if (isAllowed) {
     response.headers.set("Access-Control-Allow-Origin", origin);
@@ -51,6 +53,10 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  // Determine cookie domain based on origin
+  const isVercelDomain = origin?.endsWith(".vercel.app");
+  const cookieDomain = isVercelDomain ? undefined : ".hackpsu.org";
+
   // Create comprehensive cookie deletion headers
   const deleteCookieHeaders = [
     // Primary deletion - match original cookie exactly
@@ -58,12 +64,12 @@ export async function POST(req: NextRequest) {
       maxAge: -1,
       expires: new Date(0),
       path: "/",
-      domain: ".hackpsu.org",
+      domain: cookieDomain,
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
     }),
-    // Delete on current domain (auth.hackpsu.org)
+    // Delete on current domain (without domain specification)
     serialize("__session", "", {
       maxAge: -1,
       expires: new Date(0),
@@ -76,7 +82,7 @@ export async function POST(req: NextRequest) {
     serialize("__logout", "true", {
       maxAge: 30, // 30 seconds should be enough
       path: "/",
-      domain: ".hackpsu.org",
+      domain: cookieDomain,
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",

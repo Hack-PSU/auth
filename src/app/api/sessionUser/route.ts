@@ -1,13 +1,15 @@
 import { type NextRequest, NextResponse } from "next/server";
 import admin from "@/lib/firebaseAdmin";
 
-// CORS headers for HackPSU subdomains
+// CORS headers for HackPSU subdomains and Vercel preview domains
 function setCorsHeaders(response: NextResponse, origin?: string) {
   const allowedOrigins = ["https://hackpsu.org"];
 
   const isAllowed =
     origin &&
-    (allowedOrigins.includes(origin) || origin.endsWith(".hackpsu.org"));
+    (allowedOrigins.includes(origin) ||
+      origin.endsWith(".hackpsu.org") ||
+      origin.endsWith(".vercel.app"));
 
   if (isAllowed) {
     response.headers.set("Access-Control-Allow-Origin", origin);

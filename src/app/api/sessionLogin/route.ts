@@ -2,13 +2,15 @@ import { type NextRequest, NextResponse } from "next/server";
 import admin from "@/lib/firebaseAdmin";
 import { serialize } from "cookie";
 
-// CORS headers for HackPSU subdomains
+// CORS headers for HackPSU subdomains and Vercel preview domains
 function setCorsHeaders(response: NextResponse, origin?: string) {
   const allowedOrigins = ["https://hackpsu.org"];
 
   const isAllowed =
     origin &&
-    (allowedOrigins.includes(origin) || origin.endsWith(".hackpsu.org"));
+    (allowedOrigins.includes(origin) ||
+      origin.endsWith(".hackpsu.org") ||
+      origin.endsWith(".vercel.app"));
 
   if (isAllowed) {
     response.headers.set("Access-Control-Allow-Origin", origin);
@@ -41,12 +43,17 @@ export async function POST(req: NextRequest) {
       .auth()
       .createSessionCookie(idToken, { expiresIn });
 
+    // Determine cookie domain based on origin
+    const cookieDomain = origin?.endsWith(".vercel.app")
+      ? undefined
+      : ".hackpsu.org";
+
     const cookieHeader = serialize("__session", sessionCookie, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       maxAge: expiresIn / 1000,
       path: "/",
-      domain: ".hackpsu.org",
+      domain: cookieDomain,
       sameSite: "strict",
     });
 
