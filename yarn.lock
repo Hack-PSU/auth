@@ -1885,9 +1885,9 @@ cookie@^1.0.2:
   integrity sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==
 
 core-js@^3.38.1:
-  version "3.45.0"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.45.0.tgz#556c2af44a2d9c73ea7b49504392474a9f7c947e"
-  integrity sha512-c2KZL9lP4DjkN3hk/an4pWn5b5ZefhRJnAc42n6LJ19kSnbeRbdQZE5dSeE2LBol1OwJD3X1BQvFTAsa8ReeDA==
+  version "3.45.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.45.1.tgz#5810e04a1b4e9bc5ddaa4dd12e702ff67300634d"
+  integrity sha512-L4NPsJlCfZsPeXukyzHFlg/i7IIVwHSItR0wg0FLNqYClJ4MQYTYLbC7EkjKYRLZF2iof2MUgN0EGy7MdQFChg==
 
 cross-spawn@^7.0.6:
   version "7.0.6"
@@ -3722,9 +3722,9 @@ postcss@^8.4.41:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.260.1"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.260.1.tgz#7a0011c768bd06debabd14f86d372d26d0c50c6e"
-  integrity sha512-DD8ZSRpdScacMqtqUIvMFme8lmOWkOvExG8VvjONE7Cm3xpRH5xXpfrwMJE4bayTGWKMx4ij6SfphK6dm/o2ug==
+  version "1.260.2"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.260.2.tgz#66e034b3473e99ec985a415cd4acb60afc5d3201"
+  integrity sha512-2Q+QUz9j9+uG16wp0WcOEbezVsLZCobZyTX8NvWPMGKyPaf2lOsjbPjznsq5JiIt324B6NAqzpWYZTzvhn9k9Q==
   dependencies:
     core-js "^3.38.1"
     fflate "^0.4.8"
@@ -3739,9 +3739,9 @@ posthog-node@^5.5.1:
     "@posthog/core" "1.0.0"
 
 preact@^10.19.3:
-  version "10.27.0"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.27.0.tgz#7e614fb651cc1f49275bfb7682e811d759a5364f"
-  integrity sha512-/DTYoB6mwwgPytiqQTh/7SFRL98ZdiD8Sk8zIUVOxtwq4oWcwrcd1uno9fE/zZmUaUrFNYzbH14CPebOz9tZQw==
+  version "10.27.1"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.27.1.tgz#c391dcad5813b67d9e04655d844d8fdc307d4252"
+  integrity sha512-V79raXEWch/rbqoNc7nT9E4ep7lu+mI3+sBmfRD4i1M73R3WLYcCtdI0ibxGVf4eQL8ZIz2nFacqEC+rmnOORQ==
 
 prelude-ls@^1.2.1:
   version "1.2.1"
