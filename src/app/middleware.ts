@@ -6,14 +6,16 @@ export function middleware(request: NextRequest) {
   if (request.nextUrl.pathname.startsWith("/api/")) {
     const origin = request.headers.get("origin");
 
-    // Allow all HackPSU subdomains and Vercel preview domains
+    // Allow HackPSU domains, Vercel domains, and localhost for development
     const allowedOrigins = ["https://hackpsu.org"];
 
     const isAllowed =
       origin &&
       (allowedOrigins.includes(origin) ||
         origin.endsWith(".hackpsu.org") ||
-        origin.endsWith(".vercel.app"));
+        origin.endsWith(".vercel.app") ||
+        origin.startsWith("http://localhost:") ||
+        origin.startsWith("http://127.0.0.1:"));
 
     // Handle preflight requests
     if (request.method === "OPTIONS") {

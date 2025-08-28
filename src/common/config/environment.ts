@@ -1,4 +1,3 @@
-import { z } from "zod";
 import type { FirebaseOptions } from "firebase/app";
 import type { ServiceAccount } from "firebase-admin";
 
@@ -15,8 +14,12 @@ export function getEnvironment(): FirebaseOptions {
     storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
     messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
     appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-    //baseURL:       process.env.NEXT_PUBLIC_BASE_URL_V3,
   };
+}
+
+export function getAuthServiceURL(): string {
+  // Use environment variable if set, otherwise default to production
+  return process.env.NEXT_PUBLIC_AUTH_SERVICE_URL || "https://auth.hackpsu.org";
 }
 
 export function getServiceAccount(): ServiceAccount {

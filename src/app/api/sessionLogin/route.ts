@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import admin from "@/lib/firebaseAdmin";
 import { serialize } from "cookie";
 
-// CORS headers for HackPSU subdomains and Vercel preview domains
+// CORS headers for HackPSU subdomains, Vercel domains, and localhost
 function setCorsHeaders(response: NextResponse, origin?: string) {
   const allowedOrigins = ["https://hackpsu.org"];
 
@@ -10,7 +10,9 @@ function setCorsHeaders(response: NextResponse, origin?: string) {
     origin &&
     (allowedOrigins.includes(origin) ||
       origin.endsWith(".hackpsu.org") ||
-      origin.endsWith(".vercel.app"));
+      origin.endsWith(".vercel.app") ||
+      origin.startsWith("http://localhost:") ||
+      origin.startsWith("http://127.0.0.1:"));
 
   if (isAllowed) {
     response.headers.set("Access-Control-Allow-Origin", origin);
@@ -44,7 +46,9 @@ export async function POST(req: NextRequest) {
       .createSessionCookie(idToken, { expiresIn });
 
     // Determine cookie domain based on origin
-    const cookieDomain = origin?.endsWith(".vercel.app")
+    const cookieDomain = origin?.endsWith(".vercel.app") || 
+                        origin?.startsWith("http://localhost:") || 
+                        origin?.startsWith("http://127.0.0.1:")
       ? undefined
       : ".hackpsu.org";
 

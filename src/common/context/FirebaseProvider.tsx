@@ -29,6 +29,7 @@ import {
 } from "firebase/auth";
 import { jwtDecode } from "jwt-decode";
 import { auth } from "@/common/config/firebase"; // use shared auth
+import { getAuthServiceURL } from "@/common/config/environment";
 import posthog from "posthog-js";
 
 // Internal role definitions (used for permission checking only)
@@ -85,7 +86,8 @@ export const FirebaseProvider: FC<Props> = ({ children }) => {
 
   // Helper: call sessionLogin endpoint with ID token
   const createSession = useCallback(async (idToken: string) => {
-    await fetch("/api/sessionLogin", {
+    const authServiceURL = getAuthServiceURL();
+    await fetch(`${authServiceURL}/api/sessionLogin`, {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
@@ -95,7 +97,8 @@ export const FirebaseProvider: FC<Props> = ({ children }) => {
 
   // Helper: call sessionLogout endpoint
   const clearSession = useCallback(async () => {
-    await fetch("/api/sessionLogout", {
+    const authServiceURL = getAuthServiceURL();
+    await fetch(`${authServiceURL}/api/sessionLogout`, {
       method: "POST",
       credentials: "include",
     });
