@@ -40,7 +40,7 @@ export async function GET(req: NextRequest) {
   const cookie = req.cookies.get("__session")?.value;
 
   if (!cookie) {
-    const response = NextResponse.redirect("https://auth.hackpsu.org");
+    const response = NextResponse.json({ error: "No session found" }, { status: 401 });
     return setCorsHeaders(response, origin || undefined);
   }
 
@@ -72,7 +72,7 @@ export async function GET(req: NextRequest) {
     return setCorsHeaders(response, origin || undefined);
   } catch (error) {
     console.error("Session verification failed:", error);
-    const response = NextResponse.redirect("https://auth.hackpsu.org");
+    const response = NextResponse.json({ error: "Session verification failed" }, { status: 401 });
     return setCorsHeaders(response, origin || undefined);
   }
 }
