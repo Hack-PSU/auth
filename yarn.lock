@@ -3734,9 +3734,9 @@ posthog-js@^1.257.0:
     web-vitals "^4.2.4"
 
 posthog-node@^5.5.1:
-  version "5.8.1"
-  resolved "https://registry.yarnpkg.com/posthog-node/-/posthog-node-5.8.1.tgz#463b1f8c5de40f95433838fa0583c5294d93dba6"
-  integrity sha512-YJYlYnlpItVjHqM9IhvZx8TzK8gnx2nU+0uhiog4RN47NnV0Z0K1AdC4ul+O8VuvS/jHqKCQvL8iAONRA37+0A==
+  version "5.8.2"
+  resolved "https://registry.yarnpkg.com/posthog-node/-/posthog-node-5.8.2.tgz#413aa0f89561454d8f1d40b0c8f1c5bbc5e47007"
+  integrity sha512-z3XRvYwnc3T/1999FKzv16YTpxERQqLunULl2vkOPfgbCXUGNyJWLgcbTcED2ZIDE11jjZhrSph4De6OSMLphw==
   dependencies:
     "@posthog/core" "1.0.2"
 
