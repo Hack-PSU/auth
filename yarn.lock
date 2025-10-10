@@ -1025,11 +1025,6 @@
     tslib "^2.8.1"
     tsyringe "^4.10.0"
 
-"@posthog/core@1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.2.2.tgz#63382e2e208f501b2c22246ccaae55052f77ac1d"
-  integrity sha512-f16Ozx6LIigRG+HsJdt+7kgSxZTHeX5f1JlCGKI1lXcvlZgfsCR338FuMI2QRYXGl+jg/vYFzGOTQBxl90lnBg==
-
 "@posthog/core@1.2.4":
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.2.4.tgz#4fc7af7e48902e0b0ef970e010afe72c478865aa"
@@ -2002,9 +1997,9 @@ cookie@^1.0.2:
   integrity sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==
 
 core-js@^3.38.1:
-  version "3.45.1"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.45.1.tgz#5810e04a1b4e9bc5ddaa4dd12e702ff67300634d"
-  integrity sha512-L4NPsJlCfZsPeXukyzHFlg/i7IIVwHSItR0wg0FLNqYClJ4MQYTYLbC7EkjKYRLZF2iof2MUgN0EGy7MdQFChg==
+  version "3.46.0"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.46.0.tgz#323a092b96381a9184d0cd49ee9083b2f93373bb"
+  integrity sha512-vDMm9B0xnqqZ8uSBpZ8sNtRtOdmfShrvT6h2TuQGLs0Is+cR0DYbj/KWP6ALVNbWPpqA/qPLoOuppJN07humpA==
 
 cross-spawn@^7.0.6:
   version "7.0.6"
@@ -3842,11 +3837,11 @@ postcss@^8.4.41:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.273.1"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.273.1.tgz#c26c012b86591b0a6182132d30cd556f9cef8074"
-  integrity sha512-6w3j6nAWJj7W7/iksWLXRpdLrLZrQA8jTsEQ71bvmyw4bwCqhgPfxutrmeoAUNaxot2FB1JHc9Lagslg35h61g==
+  version "1.274.3"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.274.3.tgz#9fd33c94d3cfb6d3c3e865f9e86135ca9450ca77"
+  integrity sha512-w+xS+g/waoa2d2t9mHfO0q6/r9jZU/ISgHFgz+Sk6fxqmJdMuZnXAoOwjN0C2SS1PetJREaQx0K7czTisufjgw==
   dependencies:
-    "@posthog/core" "1.2.2"
+    "@posthog/core" "1.2.4"
     core-js "^3.38.1"
     fflate "^0.4.8"
     preact "^10.19.3"
