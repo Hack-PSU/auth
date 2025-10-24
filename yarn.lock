@@ -3542,10 +3542,10 @@ lru-memoizer@^2.2.0:
     lodash.clonedeep "^4.5.0"
     lru-cache "6.0.0"
 
-lucide-react@^0.546.0:
-  version "0.546.0"
-  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.546.0.tgz#d9fdc232b47fe652e06401b7ee846bf82b4f7de8"
-  integrity sha512-Z94u6fKT43lKeYHiVyvyR8fT7pwCzDu7RyMPpTvh054+xahSgj4HFQ+NmflvzdXsoAjYGdCguGaFKYuvq0ThCQ==
+lucide-react@^0.547.0:
+  version "0.547.0"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.547.0.tgz#fa3bee9384fb383ebe1fef1d80c0867aa9fa80a7"
+  integrity sha512-YLChGBWKq8ynr1UWP8WWRPhHhyuBAXfSBnHSgfoj51L//9TU3d0zvxpigf5C1IJ4vnEoTzthl5awPK55PiZhdA==
 
 magic-string@^0.30.19:
   version "0.30.19"
