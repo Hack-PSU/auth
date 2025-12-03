@@ -1055,6 +1055,13 @@
   dependencies:
     cross-spawn "^7.0.6"
 
+"@posthog/core@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.7.0.tgz#e078dcc4ae7061bea0dcff90b5c8104dda6aefd7"
+  integrity sha512-d6ZV4grpzeH/6/LP8quMVpSjY1puRkrqfwcPvGRKUAX7tb7YHyp/zMiTDuJmOFbpUxAMBXH5nDwcPiyCY2WGzA==
+  dependencies:
+    cross-spawn "^7.0.6"
+
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@protobufjs/aspromise/-/aspromise-1.1.2.tgz#9b8b0cc663d669a7d8f6f5d0893a14d348f30fbf"
@@ -3859,11 +3866,11 @@ postcss@^8.4.41:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.299.0"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.299.0.tgz#3dbcb3ce129c5bbf03593c4b942af6927bc0dadb"
-  integrity sha512-euHXKcEqQpRJNWitudVl4/doTJsftgaBDRLNGczt/v3S9N6ppLMzEOmeoqvNhNDIlpxGVlTvSawfw9HeW1r5nA==
+  version "1.300.0"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.300.0.tgz#8609ea66653120d74470da7d7e800425c1981718"
+  integrity sha512-FpeD4pkpg9i/3F5xpeX+CZeq3R3BaLyFDkzb4sOjpUIW1AAVuOEqPTxnWIess6C3pOw1u3mowq0WSeh1PmrqfA==
   dependencies:
-    "@posthog/core" "1.6.0"
+    "@posthog/core" "1.7.0"
     core-js "^3.38.1"
     fflate "^0.4.8"
     preact "^10.19.3"
