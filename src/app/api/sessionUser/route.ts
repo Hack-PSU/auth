@@ -6,7 +6,7 @@ import { setCorsHeaders, SESSION_COOKIE_NAME } from "@/lib/auth-utils";
 export async function OPTIONS(req: NextRequest) {
   const origin = req.headers.get("origin");
   const response = new NextResponse(null, { status: 200 });
-  return setCorsHeaders(response, origin || undefined);
+  return setCorsHeaders(response, origin);
 }
 
 export async function GET(req: NextRequest) {
