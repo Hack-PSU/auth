@@ -1,33 +1,11 @@
 import { type NextRequest, NextResponse } from "next/server";
 import admin from "@/lib/firebaseAdmin";
-import { serialize } from "cookie";
-
-// CORS headers for HackPSU subdomains, Vercel domains, and localhost
-function setCorsHeaders(response: NextResponse, origin?: string) {
-  const allowedOrigins = ["https://hackpsu.org"];
-
-  const isAllowed =
-    origin &&
-    (allowedOrigins.includes(origin) ||
-      origin.endsWith(".hackpsu.org") ||
-      origin.endsWith(".vercel.app") ||
-      origin.startsWith("http://localhost:") ||
-      origin.startsWith("http://127.0.0.1:"));
-
-  if (isAllowed) {
-    response.headers.set("Access-Control-Allow-Origin", origin);
-  }
-
-  response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  response.headers.set(
-    "Access-Control-Allow-Headers",
-    "Content-Type, Authorization",
-  );
-  response.headers.set("Access-Control-Allow-Credentials", "true");
-  response.headers.set("Access-Control-Max-Age", "86400");
-
-  return response;
-}
+import {
+  setCorsHeaders,
+  createSessionCookie,
+  SESSION_DURATION_MS,
+  shouldUseCookieAuth,
+} from "@/lib/auth-utils";
 
 export async function OPTIONS(req: NextRequest) {
   const origin = req.headers.get("origin");
@@ -37,41 +15,49 @@ export async function OPTIONS(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   const origin = req.headers.get("origin");
-  const { idToken } = await req.json();
-  const expiresIn = 5 * 24 * 60 * 60 * 1000; // 5 days
 
   try {
+    const { idToken } = await req.json();
+
+    if (!idToken) {
+      const response = NextResponse.json(
+        { error: "idToken is required" },
+        { status: 400 },
+      );
+      return setCorsHeaders(response, origin);
+    }
+
+    // Create Firebase session cookie
     const sessionCookie = await admin
       .auth()
-      .createSessionCookie(idToken, { expiresIn });
+      .createSessionCookie(idToken, { expiresIn: SESSION_DURATION_MS });
 
-    // Determine cookie domain based on origin
-    const cookieDomain = origin?.endsWith(".vercel.app") || 
-                        origin?.startsWith("http://localhost:") || 
-                        origin?.startsWith("http://127.0.0.1:")
-      ? undefined
-      : ".hackpsu.org";
+    const useCookies = shouldUseCookieAuth(origin);
+    const cookieHeader = createSessionCookie(sessionCookie, origin);
 
-    const cookieHeader = serialize("__session", sessionCookie, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      maxAge: expiresIn / 1000,
-      path: "/",
-      domain: cookieDomain,
-      sameSite: "strict",
+    // Response payload
+    const responseData: { status: string; token?: string } = {
+      status: "ok",
+    };
+
+    // For staging/local, return the session cookie as a token
+    // so the client can store it and send via Authorization header
+    if (!useCookies) {
+      responseData.token = sessionCookie;
+    }
+
+    const response = NextResponse.json(responseData, {
+      status: 200,
+      headers: { "Set-Cookie": cookieHeader },
     });
 
+    return setCorsHeaders(response, origin);
+  } catch (error) {
+    console.error("Session login error:", error);
     const response = NextResponse.json(
-      { status: "ok" },
-      {
-        status: 200,
-        headers: { "Set-Cookie": cookieHeader },
-      },
+      { error: "Failed to create session" },
+      { status: 500 },
     );
-
-    return setCorsHeaders(response, origin || undefined);
-  } catch {
-    const response = new NextResponse(null, { status: 500 });
-    return setCorsHeaders(response, origin || undefined);
+    return setCorsHeaders(response, origin);
   }
 }

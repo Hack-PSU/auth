@@ -5,7 +5,9 @@ export function middleware(request: NextRequest) {
   // Handle CORS for API routes
   if (request.nextUrl.pathname.startsWith("/api/")) {
     const origin = request.headers.get("origin");
-    console.log(`[CORS] ${request.method} ${request.nextUrl.pathname} from origin: ${origin}`);
+    console.log(
+      `[CORS] ${request.method} ${request.nextUrl.pathname} from origin: ${origin}`,
+    );
 
     // Allow HackPSU domains, Vercel domains, and localhost for development
     const allowedOrigins = ["https://hackpsu.org"];
@@ -44,7 +46,7 @@ export function middleware(request: NextRequest) {
 
     // For non-preflight requests, continue to the API route but set CORS headers
     const response = NextResponse.next();
-    
+
     if (isAllowed) {
       response.headers.set("Access-Control-Allow-Origin", origin);
       response.headers.set("Access-Control-Allow-Credentials", "true");
