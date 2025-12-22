@@ -1048,13 +1048,6 @@
     tslib "^2.8.1"
     tsyringe "^4.10.0"
 
-"@posthog/core@1.8.1":
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.8.1.tgz#590327b0878f2148d9327a962301b0b54ffea796"
-  integrity sha512-jfzBtQIk9auRi/biO+G/gumK5KxqsD5wOr7XpYMROE/I3pazjP4zIziinp21iQuIQJMXrDvwt9Af3njgOGwtew==
-  dependencies:
-    cross-spawn "^7.0.6"
-
 "@posthog/core@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.9.0.tgz#b0f3b2018e166dd47e8d5a38fbcf32c93ff384f7"
@@ -3877,11 +3870,11 @@ posthog-js@^1.257.0:
     web-vitals "^4.2.4"
 
 posthog-node@^5.5.1:
-  version "5.17.4"
-  resolved "https://registry.yarnpkg.com/posthog-node/-/posthog-node-5.17.4.tgz#cb330eab368e831dbca794e40755a4ce4b1eb263"
-  integrity sha512-hrd+Do/DMt40By12ESIDUfD81V9OASjq9XHjycZrGiD8cX/ZwCIVSJLUb7nQmvSCWcKII+u+nnPVuc4LjTDl9g==
+  version "5.18.0"
+  resolved "https://registry.yarnpkg.com/posthog-node/-/posthog-node-5.18.0.tgz#016aa760db4aeef2d264929e09ed887b35479555"
+  integrity sha512-SLBEs+sCThxzTGSSDEe97nZHuFFYh6DupObR1yQdvQND3CJh0ogZ0Sa1Vb+Tbrnf0cWbfBC9XNkm44yhaWf3aA==
   dependencies:
-    "@posthog/core" "1.8.1"
+    "@posthog/core" "1.9.0"
 
 preact@^10.19.3:
   version "10.28.0"
