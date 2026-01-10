@@ -1400,12 +1400,19 @@
   dependencies:
     undici-types "~7.16.0"
 
-"@types/node@^22.0.0", "@types/node@^22.8.7":
+"@types/node@^22.8.7":
   version "22.19.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-22.19.5.tgz#82e8c3da99667246efc63a634114ab34fb34e08e"
   integrity sha512-HfF8+mYcHPcPypui3w3mvzuIErlNOh2OAG+BCeBZCEwyiD5ls2SiCwEyT47OELtf7M3nHxBdu0FsmzdKxkN52Q==
   dependencies:
     undici-types "~6.21.0"
+
+"@types/node@^24.0.0":
+  version "24.10.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-24.10.7.tgz#516502e408f6d00afd230f291bfe3ad38105a73e"
+  integrity sha512-+054pVMzVTmRQV8BhpGv3UyfZ2Llgl8rdpDTon+cUH9+na0ncBVXj3wTUKh14+Kiz18ziM3b4ikpP5/Pc0rQEQ==
+  dependencies:
+    undici-types "~7.16.0"
 
 "@types/qs@*":
   version "6.14.0"
