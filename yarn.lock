@@ -1055,10 +1055,10 @@
   dependencies:
     cross-spawn "^7.0.6"
 
-"@posthog/types@1.318.1":
-  version "1.318.1"
-  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.318.1.tgz#168f058ef55c36545b07e652a2c59ea8cbd319c5"
-  integrity sha512-FYjHp4wlYvt4xc7MM+zIjfYICY/+lvjby/nOib29psTuUMT3nJXwqWz65QBox6XldaJdeId5F+UW6IOtJ1Q9iA==
+"@posthog/types@1.318.2":
+  version "1.318.2"
+  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.318.2.tgz#a6b3dd0abd51789666d8348b7e9e7209bf055d3a"
+  integrity sha512-/4m1DStpyaZStTJJ4b7RyftnFoSM/IWmVBTiWvdm2e2I8A8W3D4+YY7YkTpPtTinRZEhDQEZFjhlHdDgNCiNuA==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -3876,12 +3876,12 @@ postcss@^8.4.41:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.318.1"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.318.1.tgz#746ce58a91375d987c2e2b66bd897be1f81fc330"
-  integrity sha512-8zG02pcTYILB8At/9P2B2MJjuGq+DY3BeE01I4IPi6bnWNh3hka6+ZQhn9GfgtCQs7Ygk6qMaOxpUFvsDGQaQQ==
+  version "1.318.2"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.318.2.tgz#dd18312b738aaaf6169ac3f9d40e09b2ffc3b019"
+  integrity sha512-M5C/3HYlyNaqmCIwgGkmJLcGt5MREwsllwGLAOO3nMYhrWSjEuJnEzenplHxa/4UgwvhR4121ErzRHgK67qq1A==
   dependencies:
     "@posthog/core" "1.9.1"
-    "@posthog/types" "1.318.1"
+    "@posthog/types" "1.318.2"
     core-js "^3.38.1"
     dompurify "^3.3.1"
     fflate "^0.4.8"
