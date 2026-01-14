@@ -1155,10 +1155,10 @@
   dependencies:
     cross-spawn "^7.0.6"
 
-"@posthog/types@1.319.0":
-  version "1.319.0"
-  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.319.0.tgz#605e08f0eaefaeae5c1c797af8a2d2c92d1e8991"
-  integrity sha512-jHvs5PhDfPjqDToecgtBWADW+sVox4ezD9LIYbcP72CIMzHVZcKJD5upq6RDchTEvX5gV+qy2SNyPPrsuLpcMg==
+"@posthog/types@1.320.0":
+  version "1.320.0"
+  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.320.0.tgz#f17c5c166c2152094ffe2a6e302caff8229e80f0"
+  integrity sha512-/9LJgczGRNlh8hojWcEz02E+mI577ENmnNxq6Lq+KqHJ2fyvxCYIJ9PWi9vGS/wwohPG5VuYY7EyfGx4UqSQgQ==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -1501,9 +1501,9 @@
     undici-types "~7.16.0"
 
 "@types/node@>=13.7.0":
-  version "25.0.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-25.0.6.tgz#5ca3c46f2b256b59128f433426e42d464765dab1"
-  integrity sha512-NNu0sjyNxpoiW3YuVFfNz7mxSQ+S4X2G28uqg2s+CzoqoQjLPsWSbsFFyztIAqt2vb8kfEAsJNepMGPTxFDx3Q==
+  version "25.0.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-25.0.8.tgz#e54e00f94fe1db2497b3e42d292b8376a2678c8d"
+  integrity sha512-powIePYMmC3ibL0UJ2i2s0WIbq6cg6UyVFQxSCpaPxxzAaziRfimGivjdF943sSGV6RADVbk0Nvlm5P/FB44Zg==
   dependencies:
     undici-types "~7.16.0"
 
@@ -3983,9 +3983,9 @@ postcss@^8.4.41:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.319.0"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.319.0.tgz#1d59f48cc6d03326a1ad8914c5798c266c1ef263"
-  integrity sha512-0LFqLEhZzA8s1TrhYxsKsKmYV0n3FpNrWaT8rMjL87TRXtpy3XtsvbZKa97X6MFly5CK9CdhgKSNNyX7j12MrQ==
+  version "1.320.0"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.320.0.tgz#b6f9e97ffad676e66225e6a698375d72da800c18"
+  integrity sha512-ocb/cgJhMtokKS65N8BKNVOpGiTaEdfPGQ4SInT2K7jGKocCSszh5BIA8K6C8C/37qjT2ebbI95hGyWJ+75tYQ==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
     "@opentelemetry/api-logs" "^0.208.0"
@@ -3993,11 +3993,11 @@ posthog-js@^1.257.0:
     "@opentelemetry/resources" "^2.2.0"
     "@opentelemetry/sdk-logs" "^0.208.0"
     "@posthog/core" "1.9.1"
-    "@posthog/types" "1.319.0"
+    "@posthog/types" "1.320.0"
     core-js "^3.38.1"
     dompurify "^3.3.1"
     fflate "^0.4.8"
-    preact "^10.19.3"
+    preact "^10.28.0"
     query-selector-shadow-dom "^1.0.1"
     web-vitals "^4.2.4"
 
@@ -4008,7 +4008,7 @@ posthog-node@^5.5.1:
   dependencies:
     "@posthog/core" "1.9.1"
 
-preact@^10.19.3:
+preact@^10.28.0:
   version "10.28.2"
   resolved "https://registry.yarnpkg.com/preact/-/preact-10.28.2.tgz#4b668383afa4b4a2546bbe4bd1747e02e2360138"
   integrity sha512-lbteaWGzGHdlIuiJ0l2Jq454m6kcpI1zNje6d8MlGAFlYvP2GO4ibnat7P74Esfz4sPTdM6UxtTwh/d3pwM9JA==
