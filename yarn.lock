@@ -1155,10 +1155,17 @@
   dependencies:
     cross-spawn "^7.0.6"
 
-"@posthog/types@1.335.3":
-  version "1.335.3"
-  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.335.3.tgz#e90099a646a450ef4753edf0d02d939ba1579260"
-  integrity sha512-mReFmfI+ep5sH3cnFhjvWfOcl3j6olKpN5lHFbOomLGxYTHMXcyMUBE3/o8WfrAgR1qxKQUsWMNcv6BhLr/GKA==
+"@posthog/core@1.14.1":
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.14.1.tgz#0796611d9f3438d499198d299a61268d19d491ff"
+  integrity sha512-DtmJ1y1IDauX8yAZtIotRAYDRkgCCMLk5S9vFFRX7vufhWblQuRUOgn9WYSJrocJlZKm1aEjDzGQ0uyL7HcdLw==
+  dependencies:
+    cross-spawn "^7.0.6"
+
+"@posthog/types@1.335.4":
+  version "1.335.4"
+  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.335.4.tgz#e87506443eac1610907618be1dadefdeafda85e2"
+  integrity sha512-kqZYSk212Y/GS//QQmCdHuT4DENVYWJcg+ywRbDPlWxFtQNB58Ne/Np1lLtXeUjdJwWRBbcCPZfUBQcAFA+sCg==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -3983,21 +3990,21 @@ postcss@^8.4.41:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.335.3"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.335.3.tgz#3b17d4075fc522984f82a1f568187c0ff8308978"
-  integrity sha512-ZQg3ozgsPom+SZtAxMN97Zx9Vqkdsv1D4TZU/OqbAZdm27PswV6+ShBurm3nKm9jrlUU1cGHMRn2ZJZf249znQ==
+  version "1.335.4"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.335.4.tgz#5e5f1f99a1b9cac631e70f887116c50eb0829f7a"
+  integrity sha512-mZFOAmkhsfHLG/dQIHEhsUNQyTyfv4Nwlf394KT/7I9ntLM3r8HU2RBdKxzCbLB3SSrcFb+CkpunikcICykCyQ==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
     "@opentelemetry/api-logs" "^0.208.0"
     "@opentelemetry/exporter-logs-otlp-http" "^0.208.0"
     "@opentelemetry/resources" "^2.2.0"
     "@opentelemetry/sdk-logs" "^0.208.0"
-    "@posthog/core" "1.14.0"
-    "@posthog/types" "1.335.3"
+    "@posthog/core" "1.14.1"
+    "@posthog/types" "1.335.4"
     core-js "^3.38.1"
     dompurify "^3.3.1"
     fflate "^0.4.8"
-    preact "^10.28.0"
+    preact "^10.28.2"
     query-selector-shadow-dom "^1.0.1"
     web-vitals "^5.1.0"
 
@@ -4008,7 +4015,7 @@ posthog-node@^5.5.1:
   dependencies:
     "@posthog/core" "1.14.0"
 
-preact@^10.28.0:
+preact@^10.28.2:
   version "10.28.2"
   resolved "https://registry.yarnpkg.com/preact/-/preact-10.28.2.tgz#4b668383afa4b4a2546bbe4bd1747e02e2360138"
   integrity sha512-lbteaWGzGHdlIuiJ0l2Jq454m6kcpI1zNje6d8MlGAFlYvP2GO4ibnat7P74Esfz4sPTdM6UxtTwh/d3pwM9JA==
