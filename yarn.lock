@@ -1148,13 +1148,6 @@
     tslib "^2.8.1"
     tsyringe "^4.10.0"
 
-"@posthog/core@1.19.0":
-  version "1.19.0"
-  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.19.0.tgz#48abbb230af11673e06e218d2e1ec9857ed50be8"
-  integrity sha512-OMcdu5cJcvkle2hw0rpe+1mTOFRlerTHTtZKZFvB8z0hgzbN1WeaGZfGFY5wOq42LVTSxwdUgK1MYERyzG1Epw==
-  dependencies:
-    cross-spawn "^7.0.6"
-
 "@posthog/core@1.20.0":
   version "1.20.0"
   resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.20.0.tgz#b529cf017c23037e6202eecb7fa1ac554d731fb8"
@@ -1162,10 +1155,10 @@
   dependencies:
     cross-spawn "^7.0.6"
 
-"@posthog/types@1.339.1":
-  version "1.339.1"
-  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.339.1.tgz#e2001e2794a7d324c1bda386e5fc72eb02c4ddae"
-  integrity sha512-ZaTIepn8rzKtv/AwdBt24N3ASn9H+98rV9l/yGAPS/Tnwsno8igKcHq1Qoki9io8se58QtLARMcuMa72nzfh3A==
+"@posthog/types@1.341.0":
+  version "1.341.0"
+  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.341.0.tgz#6feb4557c1cefdf334155c56a00acc411b87c7a2"
+  integrity sha512-lIQzaPzfxdhonj2nXI2Nh3z45wyfb/e48cyy/+GawNDeRnkzqyhifpyAimVafBJIP7RR1lQqEnM8Xk55H7SRgQ==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -3886,17 +3879,17 @@ postcss@^8.4.41:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.339.1"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.339.1.tgz#b48e26f9c22bc4d8c64ffc739a9c710835a9d255"
-  integrity sha512-47zqtMT+VtT0xdadyMuOhNmKU6m2dHizYhvGE9ZHffsFjrWbe2Cqq2i0BElNZvdBd4R8TxX+aKu5ZAOyUejQrw==
+  version "1.341.0"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.341.0.tgz#41d8c62332c7b6ca3dee54c259a5dcc7ecd191d7"
+  integrity sha512-sWa/84yi93ar/SJrG0do5QshCGWqUH39cNLrngN/GqC8kA5JLxyUEBmFaK65aAxrSKJ1muGP11ofIKDCwQn98Q==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
     "@opentelemetry/api-logs" "^0.208.0"
     "@opentelemetry/exporter-logs-otlp-http" "^0.208.0"
     "@opentelemetry/resources" "^2.2.0"
     "@opentelemetry/sdk-logs" "^0.208.0"
-    "@posthog/core" "1.19.0"
-    "@posthog/types" "1.339.1"
+    "@posthog/core" "1.20.0"
+    "@posthog/types" "1.341.0"
     core-js "^3.38.1"
     dompurify "^3.3.1"
     fflate "^0.4.8"
