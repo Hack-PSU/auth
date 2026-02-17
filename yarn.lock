@@ -1155,6 +1155,13 @@
   dependencies:
     cross-spawn "^7.0.6"
 
+"@posthog/core@1.23.0":
+  version "1.23.0"
+  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.23.0.tgz#e5c89e2f1fcd433391b5a2cf01cd797617ebd5df"
+  integrity sha512-WXYL4+trl27iV8/Y+ESADOYDB7jBhbEj6q3AEQdn+9ygYG06Q3rZSdWk4ZVn8FdrD3mlq8fEqkUgRCekzp2W4g==
+  dependencies:
+    cross-spawn "^7.0.6"
+
 "@posthog/types@1.347.2":
   version "1.347.2"
   resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.347.2.tgz#3ba17fee1560151269878be0be7d65fcda43b60e"
@@ -3905,11 +3912,11 @@ posthog-js@^1.257.0:
     web-vitals "^5.1.0"
 
 posthog-node@^5.5.1:
-  version "5.24.15"
-  resolved "https://registry.yarnpkg.com/posthog-node/-/posthog-node-5.24.15.tgz#dc5766b320d940f093d03baedf7abd608ddfdd8c"
-  integrity sha512-0QnWVOZAPwEAlp+r3r0jIGfk2IaNYM/2YnEJJhBMJZXs4LpHcTu7mX42l+e95o9xX87YpVuZU0kOkmtQUxgnOA==
+  version "5.24.16"
+  resolved "https://registry.yarnpkg.com/posthog-node/-/posthog-node-5.24.16.tgz#0f6e60bff405eff3555ba258a5b2ce2facf8accf"
+  integrity sha512-CBQ1W6MuhXN+7o9PK20BfJQKb7oz6ZaAuglH73HDJ/5CHL14wvprzy7snhZ+tbLZ7Czxsxm80SyLQ2Mc9j8s5Q==
   dependencies:
-    "@posthog/core" "1.22.0"
+    "@posthog/core" "1.23.0"
 
 preact@^10.28.2:
   version "10.28.3"
