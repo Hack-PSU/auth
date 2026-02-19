@@ -1155,10 +1155,10 @@
   dependencies:
     cross-spawn "^7.0.6"
 
-"@posthog/types@1.351.3":
-  version "1.351.3"
-  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.351.3.tgz#c19596acf6b7e1dee311249cb2b880f934d6d257"
-  integrity sha512-Fuckp/fdL0Ku/kVYljbUdJli8vF07e5+tBsf4GzYBQjfZCGhlT0l37XqVQ05Uk7l/pUDONZD+OOXNBgBzW32gA==
+"@posthog/types@1.351.4":
+  version "1.351.4"
+  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.351.4.tgz#9a6c934ede20091d710a2d8f0a9e50ab831ee740"
+  integrity sha512-PMrNdOGVIiUczixF+AkodxIigAr3OM2LMfs565uTPZaIUip7S+njoaZRoIT66VJJviWtbLtzJHR49YJtIRIiWQ==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -3886,9 +3886,9 @@ postcss@^8.5.6:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.351.3"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.351.3.tgz#5698ceeda1adcd12ab8d1d6d654e402490fe7fca"
-  integrity sha512-c2sQOhbo0Ed2Cgq+gTMFiArneu2/+HTf6sJdHw60oj2BIXTHjQfGY7H2XzA7ZZHsDNVVVcpsqpxrUhyzGsfDhQ==
+  version "1.351.4"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.351.4.tgz#1dabc6cdaf235ed60d5467f0cb91da943c14299b"
+  integrity sha512-vLSYHMN31FGs1cTJ/SCW0aCLiV6K6ZW63Q1K3B16iWRBVTwz/kg6sJZi6Z/oFeKOuy9I5K/LbVLDBCaTTlcESA==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
     "@opentelemetry/api-logs" "^0.208.0"
@@ -3896,7 +3896,7 @@ posthog-js@^1.257.0:
     "@opentelemetry/resources" "^2.2.0"
     "@opentelemetry/sdk-logs" "^0.208.0"
     "@posthog/core" "1.23.1"
-    "@posthog/types" "1.351.3"
+    "@posthog/types" "1.351.4"
     core-js "^3.38.1"
     dompurify "^3.3.1"
     fflate "^0.4.8"
@@ -3912,9 +3912,9 @@ posthog-node@^5.5.1:
     "@posthog/core" "1.23.1"
 
 preact@^10.28.2:
-  version "10.28.3"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.28.3.tgz#3c2171526b3e29628ad1a6c56a9e3ca867bbdee8"
-  integrity sha512-tCmoRkPQLpBeWzpmbhryairGnhW9tKV6c6gr/w+RhoRoKEJwsjzipwp//1oCpGPOchvSLaAPlpcJi9MwMmoPyA==
+  version "10.28.4"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.28.4.tgz#8ffab01c5c0590535bdaecdd548801f44c6e483a"
+  integrity sha512-uKFfOHWuSNpRFVTnljsCluEFq57OKT+0QdOiQo8XWnQ/pSvg7OpX5eNOejELXJMWy+BwM2nobz0FkvzmnpCNsQ==
 
 prelude-ls@^1.2.1:
   version "1.2.1"
