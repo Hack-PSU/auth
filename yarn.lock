@@ -1220,10 +1220,10 @@
   dependencies:
     cross-spawn "^7.0.6"
 
-"@posthog/types@1.358.1":
-  version "1.358.1"
-  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.358.1.tgz#0ebb5b97d78bd057983cb964f7449fb4645b001a"
-  integrity sha512-SFfhm+NHYqsk+SAxx5FlSg9FuvqsEPZidfTjPP5TYYM24fif//L+pAzxVGqaxJcnyZojIfF66NRZ3NfM5Jd+eg==
+"@posthog/types@1.359.0":
+  version "1.359.0"
+  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.359.0.tgz#db9a4954deaa66fae5a5b69468817f0bef4dbc06"
+  integrity sha512-IcRRmDqDwXnwcB1ISg2NofvDXUwJKUjmIWuRqaEzD1sB+VyY7YX9R1pctXoZ4181cdjYG8Ed/g7fnpJMloZY/A==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -2271,9 +2271,9 @@ doctrine@^2.1.0:
     esutils "^2.0.2"
 
 dompurify@^3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-3.3.1.tgz#c7e1ddebfe3301eacd6c0c12a4af284936dbbb86"
-  integrity sha512-qkdCKzLNtrgPFP1Vo+98FRzJnBRGe4ffyCea9IwHB1fyxPOeNTHpLKYGd4Uk9xvNoH0ZoOjwZxNptyMwqrId1Q==
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-3.3.2.tgz#58c515d0f8508b8749452a028aa589ad80b36325"
+  integrity sha512-6obghkliLdmKa56xdbLOpUZ43pAR6xFy1uOrxBaIDjT+yaRuuybLjGS9eVBoSR/UPU5fq3OXClEHLJNGvbxKpQ==
   optionalDependencies:
     "@types/trusted-types" "^2.0.7"
 
@@ -4115,9 +4115,9 @@ postcss@^8.5.6:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.358.1"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.358.1.tgz#777dd4496ad7d79ee5129883e7e872a4b9a6d49f"
-  integrity sha512-teipwLZtfErKDrURiUlLMnmpjgjGlni15JxyJ7oRaSlT3sX4E/mgvNatHIbWnp+7z1zYm3Jz5BYwGqwgyesRnw==
+  version "1.359.0"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.359.0.tgz#c6fc9843078dbda83b875a4861199f3df4697f6e"
+  integrity sha512-W3yrLKgJfc9qm7Z9e7LblPdCuSJsfB8xzg36GSklyFETqb5b8KtmF2cx/tiXMGEDNmKPPJ+oex/N9Q+vdTjPug==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
     "@opentelemetry/api-logs" "^0.208.0"
@@ -4125,7 +4125,7 @@ posthog-js@^1.257.0:
     "@opentelemetry/resources" "^2.2.0"
     "@opentelemetry/sdk-logs" "^0.208.0"
     "@posthog/core" "1.23.2"
-    "@posthog/types" "1.358.1"
+    "@posthog/types" "1.359.0"
     core-js "^3.38.1"
     dompurify "^3.3.1"
     fflate "^0.4.8"
