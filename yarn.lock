@@ -1320,9 +1320,9 @@
   integrity sha512-FNW1oLQpTJyqG5kkDg5ZsotvWgmBaC6jCHR7Ej0qUNep36Wl9tj2eZu7J5rP+uhXgHaLk+QQ3lqcw2vS5MX1IA==
 
 "@simplewebauthn/server@^13.1.2":
-  version "13.2.3"
-  resolved "https://registry.yarnpkg.com/@simplewebauthn/server/-/server-13.2.3.tgz#f9907f43e853e50632a5aafc4e950c2b27646b9d"
-  integrity sha512-ZhcVBOw63birYx9jVfbhK6rTehckVes8PeWV324zpmdxr0BUfylospwMzcrxrdMcOi48MHWj2LCA+S528LnGvg==
+  version "13.3.0"
+  resolved "https://registry.yarnpkg.com/@simplewebauthn/server/-/server-13.3.0.tgz#9e56f6586de076a301d01013d0963e05b21f4436"
+  integrity sha512-MLHYFrYG8/wK2i+86XMhiecK72nMaHKKt4bo+7Q1TbuG9iGjlSdfkPWKO5ZFE/BX+ygCJ7pr8H/AJeyAj1EaTQ==
   dependencies:
     "@hexagon/base64" "^1.1.27"
     "@levischuck/tiny-cbor" "^0.2.2"
