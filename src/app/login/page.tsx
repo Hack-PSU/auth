@@ -419,7 +419,7 @@ function LoginForm() {
                       </svg>
                       Continue with GitHub
                     </Button>
-
+                    {/*
                     <Button
                       type="button"
                       variant="outline"
@@ -436,6 +436,7 @@ function LoginForm() {
                       </svg>
                       Continue with Microsoft
                     </Button>
+                      */}
 
                     {/* Passkey Option - Last */}
                     {webAuthnSupported && (
