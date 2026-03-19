@@ -2,32 +2,33 @@ import { NextRequest, NextResponse } from "next/server";
 import { generateRegistrationOptions } from "@simplewebauthn/server";
 import { cookies } from "next/headers";
 import admin from "@/lib/firebaseAdmin";
-
-const rpName = "HackPSU Auth";
-const rpID = process.env.NEXT_PUBLIC_WEBAUTHN_RP_ID || "localhost";
+import {
+  rpName,
+  rpID,
+  webauthnCookieOptions,
+  SESSION_COOKIE_NAME,
+} from "@/lib/webauthn-server";
 
 export async function POST(request: NextRequest) {
   try {
     // Verify user is authenticated via session cookie or Authorization header
     const cookieStore = await cookies();
-    const sessionCookie = cookieStore.get("session")?.value;
+    const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME)?.value;
     const authHeader = request.headers.get("authorization");
 
     let decodedToken;
 
     if (sessionCookie) {
-      // Verify session cookie
       try {
         decodedToken = await admin.auth().verifySessionCookie(sessionCookie);
-      } catch (error) {
+      } catch {
         return NextResponse.json({ error: "Invalid session" }, { status: 401 });
       }
-    } else if (authHeader && authHeader.startsWith("Bearer ")) {
-      // Verify ID token
-      const idToken = authHeader.split("Bearer ")[1];
+    } else if (authHeader?.startsWith("Bearer ")) {
+      const idToken = authHeader.slice(7);
       try {
         decodedToken = await admin.auth().verifyIdToken(idToken);
-      } catch (error) {
+      } catch {
         return NextResponse.json({ error: "Invalid token" }, { status: 401 });
       }
     } else {
@@ -47,7 +48,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Generate registration options for adding a new passkey
+    // Exclude existing credentials to prevent duplicate registration
+    const db = admin.firestore();
+    const credentialsSnapshot = await db
+      .collection("users")
+      .doc(uid)
+      .collection("webauthn-credentials")
+      .get();
+
+    const excludeCredentials = credentialsSnapshot.docs.map((doc) => ({
+      id: doc.data().credentialID,
+      type: "public-key" as const,
+      transports: doc.data().transports,
+    }));
+
     const options = await generateRegistrationOptions({
       rpName,
       rpID,
@@ -55,6 +69,7 @@ export async function POST(request: NextRequest) {
       userID: new TextEncoder().encode(uid),
       userDisplayName: email,
       attestationType: "none",
+      excludeCredentials,
       authenticatorSelection: {
         residentKey: "preferred",
         userVerification: "preferred",
@@ -62,32 +77,15 @@ export async function POST(request: NextRequest) {
       supportedAlgorithmIDs: [-7, -257],
     });
 
-    // Store session data
-    cookieStore.set("webauthn-challenge", options.challenge, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 300, // 5 minutes
-    });
-
-    cookieStore.set("webauthn-user-id", uid, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 300, // 5 minutes
-    });
-
-    cookieStore.set("webauthn-flow", "registration", {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 300, // 5 minutes
-    });
+    // Store challenge cookies — uid is known since user is authenticated
+    const opts = webauthnCookieOptions();
+    cookieStore.set("webauthn-challenge", options.challenge, opts);
+    cookieStore.set("webauthn-user-id", uid, opts);
+    cookieStore.set("webauthn-flow", "registration", opts);
 
     return NextResponse.json({
-      ...options,
+      options,
       flow: "registration",
-      message: "Create a new passkey for your account",
     });
   } catch (error) {
     console.error("Error generating passkey registration options:", error);

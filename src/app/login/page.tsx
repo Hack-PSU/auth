@@ -137,6 +137,8 @@ function LoginForm() {
     setProcessing(false);
   };
 
+  const anyProcessing = isProcessing || webAuthnProcessing;
+
   const handleSeamlessAuth = async () => {
     const email = methods.getValues("email");
     if (!email) {
@@ -151,17 +153,15 @@ function LoginForm() {
     try {
       const result = await authenticateWithEmail(email);
       if (result.success) {
-        setResetSuccess(result.message);
-        // Firebase auth state will update automatically, no need to reload
+        setResetSuccess(result.message || "Signed in!");
+      } else if (result.cancelled) {
+        // User cancelled — no error needed, just reset state
+      } else if (result.requireAuth) {
+        setLoginError(
+          "This account exists but doesn't have any passkeys yet. Please sign in with your password first, then you can add a passkey from your dashboard.",
+        );
       } else {
         setLoginError(result.error || "Authentication failed");
-
-        // If the error is about requiring authentication, provide helpful context
-        if (result.requireAuth) {
-          setLoginError(
-            "This account exists but doesn't have any passkeys yet. Please sign in with your password first, then you can add a passkey from your dashboard.",
-          );
-        }
       }
     } catch (error) {
       const msg = error instanceof Error ? error.message : String(error);
@@ -333,7 +333,7 @@ function LoginForm() {
                     <Button
                       type="submit"
                       className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors"
-                      disabled={isProcessing}
+                      disabled={anyProcessing}
                     >
                       {isProcessing ? (
                         <>
@@ -376,7 +376,7 @@ function LoginForm() {
                       variant="outline"
                       className="w-full h-12 border-gray-300 hover:bg-gray-50 transition-colors"
                       onClick={() => handleOAuth(loginGoogle)}
-                      disabled={isProcessing || webAuthnProcessing}
+                      disabled={anyProcessing}
                     >
                       <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
                         <path
@@ -404,7 +404,7 @@ function LoginForm() {
                       variant="outline"
                       className="w-full h-12 border-gray-300 hover:bg-gray-50 transition-colors"
                       onClick={() => handleOAuth(loginGithub)}
-                      disabled={isProcessing || webAuthnProcessing}
+                      disabled={anyProcessing}
                     >
                       <svg
                         className="mr-2 h-4 w-4"
@@ -425,7 +425,7 @@ function LoginForm() {
                       variant="outline"
                       className="w-full h-12 border-gray-300 hover:bg-gray-50 transition-colors"
                       onClick={() => handleOAuth(loginMicrosoft)}
-                      disabled={isProcessing || webAuthnProcessing}
+                      disabled={anyProcessing}
                     >
                       <svg className="mr-2 h-4 w-4" viewBox="0 0 23 23">
                         <path fill="#f3f3f3" d="M0 0h23v23H0z" />
@@ -445,7 +445,7 @@ function LoginForm() {
                         variant="outline"
                         className="w-full h-12 border-gray-300 hover:bg-gray-50 transition-colors text-gray-700"
                         onClick={handleSeamlessAuth}
-                        disabled={webAuthnProcessing}
+                        disabled={anyProcessing}
                       >
                         {webAuthnProcessing ? (
                           <>

@@ -3,31 +3,52 @@ import {
   generateRegistrationOptions,
   generateAuthenticationOptions,
 } from "@simplewebauthn/server";
-import { cookies } from "next/headers";
 import admin from "@/lib/firebaseAdmin";
-
-const rpName = "HackPSU Auth";
-const rpID = process.env.NEXT_PUBLIC_WEBAUTHN_RP_ID || "localhost";
+import {
+  rpName,
+  rpID,
+  setChallengeCookies,
+  isValidEmail,
+} from "@/lib/webauthn-server";
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { email } = body;
 
-    if (!email) {
+    if (!email || typeof email !== "string") {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
 
+    if (!isValidEmail(email)) {
+      return NextResponse.json(
+        { error: "Invalid email address" },
+        { status: 400 },
+      );
+    }
+
     const db = admin.firestore();
-    let uid: string;
-    let userExists = false;
-    let isNewUser = false;
 
     // Check if user exists in Firebase Auth
+    let existingUser: admin.auth.UserRecord | null = null;
     try {
-      const existingUser = await admin.auth().getUserByEmail(email);
-      uid = existingUser.uid;
-      userExists = true;
+      existingUser = await admin.auth().getUserByEmail(email);
+    } catch (error: unknown) {
+      // Only treat auth/user-not-found as "no user". Re-throw anything else.
+      if (
+        error &&
+        typeof error === "object" &&
+        "code" in error &&
+        (error as { code: string }).code === "auth/user-not-found"
+      ) {
+        existingUser = null;
+      } else {
+        throw error;
+      }
+    }
+
+    if (existingUser) {
+      const uid = existingUser.uid;
 
       // Check for existing WebAuthn credentials
       const credentialsSnapshot = await db
@@ -36,10 +57,8 @@ export async function POST(request: NextRequest) {
         .collection("webauthn-credentials")
         .get();
 
-      const hasCredentials = !credentialsSnapshot.empty;
-
-      if (hasCredentials) {
-        // User has credentials, generate authentication options
+      if (!credentialsSnapshot.empty) {
+        // User has credentials — generate authentication options
         const allowCredentials = credentialsSnapshot.docs.map((doc) => ({
           id: doc.data().credentialID,
           type: "public-key" as const,
@@ -52,37 +71,17 @@ export async function POST(request: NextRequest) {
           userVerification: "preferred",
         });
 
-        // Store session data for authentication
-        const cookieStore = await cookies();
-        cookieStore.set("webauthn-challenge", options.challenge, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
-          sameSite: "strict",
-          maxAge: 300, // 5 minutes
-        });
-
-        cookieStore.set("webauthn-user-id", uid, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
-          sameSite: "strict",
-          maxAge: 300, // 5 minutes
-        });
-
-        cookieStore.set("webauthn-flow", "authentication", {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
-          sameSite: "strict",
-          maxAge: 300, // 5 minutes
+        await setChallengeCookies(options.challenge, "authentication", {
+          uid,
         });
 
         return NextResponse.json({
-          ...options,
+          options,
           flow: "authentication",
           isNewUser: false,
-          message: "Use your passkey to sign in",
         });
       } else {
-        // Existing user without passkeys - they need to sign in first
+        // Existing user without passkeys — they need to sign in first
         return NextResponse.json(
           {
             error:
@@ -92,61 +91,33 @@ export async function POST(request: NextRequest) {
           { status: 401 },
         );
       }
-    } catch (error) {
-      // User doesn't exist - allow new user registration with passkey
-      const newUser = await admin.auth().createUser({
-        email,
-        displayName: email,
-        emailVerified: true, // For passkey users, we consider them verified
-      });
-      uid = newUser.uid;
-      isNewUser = true;
-
-      // Generate registration options for new user
-      const options = await generateRegistrationOptions({
-        rpName,
-        rpID,
-        userName: email,
-        userID: new TextEncoder().encode(uid),
-        userDisplayName: email,
-        attestationType: "none",
-        authenticatorSelection: {
-          residentKey: "preferred",
-          userVerification: "preferred",
-        },
-        supportedAlgorithmIDs: [-7, -257],
-      });
-
-      // Store session data for registration
-      const cookieStore = await cookies();
-      cookieStore.set("webauthn-challenge", options.challenge, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
-        maxAge: 300, // 5 minutes
-      });
-
-      cookieStore.set("webauthn-user-id", uid, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
-        maxAge: 300, // 5 minutes
-      });
-
-      cookieStore.set("webauthn-flow", "registration", {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
-        maxAge: 300, // 5 minutes
-      });
-
-      return NextResponse.json({
-        ...options,
-        flow: "registration",
-        isNewUser: true,
-        message: "Create your first passkey to get started",
-      });
     }
+
+    // New user — generate registration options without creating the account yet.
+    // The account is created only after the credential is verified successfully,
+    // preventing orphaned users when someone cancels the WebAuthn prompt.
+    const options = await generateRegistrationOptions({
+      rpName,
+      rpID,
+      userName: email,
+      // Use a deterministic placeholder; the real uid is assigned on verify.
+      userID: new TextEncoder().encode(email),
+      userDisplayName: email,
+      attestationType: "none",
+      authenticatorSelection: {
+        residentKey: "preferred",
+        userVerification: "preferred",
+      },
+      supportedAlgorithmIDs: [-7, -257],
+    });
+
+    await setChallengeCookies(options.challenge, "registration", { email });
+
+    return NextResponse.json({
+      options,
+      flow: "registration",
+      isNewUser: true,
+    });
   } catch (error) {
     console.error("Error generating options:", error);
     return NextResponse.json(
