@@ -20,7 +20,10 @@ import {
   Fingerprint,
 } from "lucide-react";
 import Image from "next/image";
-import { authenticateWithEmail, isWebAuthnSupported } from "@/lib/webauthn";
+import {
+  authenticateWithPasskey,
+  isWebAuthnSupported,
+} from "@/lib/webauthn";
 
 interface FormData {
   email: string;
@@ -139,38 +142,30 @@ function LoginForm() {
 
   const anyProcessing = isProcessing || webAuthnProcessing;
 
-  const handleSeamlessAuth = async () => {
-    const email = methods.getValues("email");
-    if (!email) {
-      setLoginError("Please enter your email address first.");
-      return;
-    }
-
+  // Discoverable passkey sign-in — no email needed
+  const handlePasskeySignIn = async () => {
     setWebAuthnProcessing(true);
     setLoginError("");
     setResetSuccess("");
 
     try {
-      const result = await authenticateWithEmail(email);
+      const result = await authenticateWithPasskey();
       if (result.success) {
         setResetSuccess(result.message || "Signed in!");
       } else if (result.cancelled) {
-        // User cancelled — no error needed, just reset state
-      } else if (result.requireAuth) {
-        setLoginError(
-          "This account exists but doesn't have any passkeys yet. Please sign in with your password first, then you can add a passkey from your dashboard.",
-        );
+        // User cancelled — no error
       } else {
         setLoginError(result.error || "Authentication failed");
       }
     } catch (error) {
       const msg = error instanceof Error ? error.message : String(error);
-      console.error("Authentication error:", error);
+      console.error("Passkey auth error:", error);
       setLoginError(msg);
     }
 
     setWebAuthnProcessing(false);
   };
+
 
   return (
     <div className="w-full max-w-md space-y-8">
@@ -438,13 +433,13 @@ function LoginForm() {
                     </Button>
                       */}
 
-                    {/* Passkey Option - Last */}
+                    {/* Passkey — no email required */}
                     {webAuthnSupported && (
                       <Button
                         type="button"
                         variant="outline"
                         className="w-full h-12 border-gray-300 hover:bg-gray-50 transition-colors text-gray-700"
-                        onClick={handleSeamlessAuth}
+                        onClick={handlePasskeySignIn}
                         disabled={anyProcessing}
                       >
                         {webAuthnProcessing ? (
@@ -455,7 +450,7 @@ function LoginForm() {
                         ) : (
                           <>
                             <Fingerprint className="mr-2 h-4 w-4" />
-                            Continue with Passkey
+                            Sign in with Passkey
                           </>
                         )}
                       </Button>

@@ -95,7 +95,11 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
-    await credRef.delete();
+    // Delete credential and its index entry in a batch
+    const batch = db.batch();
+    batch.delete(credRef);
+    batch.delete(db.collection("webauthn-credential-index").doc(credentialId));
+    await batch.commit();
 
     return NextResponse.json({ success: true });
   } catch (error) {

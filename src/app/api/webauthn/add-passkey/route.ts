@@ -48,19 +48,27 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Exclude existing credentials to prevent duplicate registration
+    // Exclude existing credentials to prevent duplicate registration.
+    // Non-fatal if Firestore query fails — proceed without exclusion list.
     const db = admin.firestore();
-    const credentialsSnapshot = await db
-      .collection("users")
-      .doc(uid)
-      .collection("webauthn-credentials")
-      .get();
+    let excludeCredentials: {
+      id: string;
+      transports?: AuthenticatorTransport[];
+    }[] = [];
+    try {
+      const credentialsSnapshot = await db
+        .collection("users")
+        .doc(uid)
+        .collection("webauthn-credentials")
+        .get();
 
-    const excludeCredentials = credentialsSnapshot.docs.map((doc) => ({
-      id: doc.data().credentialID,
-      type: "public-key" as const,
-      transports: doc.data().transports,
-    }));
+      excludeCredentials = credentialsSnapshot.docs.map((doc) => ({
+        id: doc.data().credentialID,
+        transports: doc.data().transports as AuthenticatorTransport[],
+      }));
+    } catch (err) {
+      console.warn("Could not fetch existing credentials for exclusion:", err);
+    }
 
     const options = await generateRegistrationOptions({
       rpName,
@@ -71,7 +79,7 @@ export async function POST(request: NextRequest) {
       attestationType: "none",
       excludeCredentials,
       authenticatorSelection: {
-        residentKey: "preferred",
+        residentKey: "required",
         userVerification: "preferred",
       },
       supportedAlgorithmIDs: [-7, -257],

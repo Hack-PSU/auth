@@ -48,12 +48,19 @@ export async function setChallengeCookies(
   cookieStore.set("webauthn-challenge", challenge, opts);
   cookieStore.set("webauthn-flow", flow, opts);
 
+  // Discoverable flow: neither uid nor email is known upfront.
+  // Email-based registration: only email.
+  // Email-based authentication / add-passkey: uid.
   if (identity.uid) {
     cookieStore.set("webauthn-user-id", identity.uid, opts);
     cookieStore.delete("webauthn-email");
   } else if (identity.email) {
     cookieStore.set("webauthn-email", identity.email, opts);
     cookieStore.delete("webauthn-user-id");
+  } else {
+    // Discoverable — clear both identity cookies
+    cookieStore.delete("webauthn-user-id");
+    cookieStore.delete("webauthn-email");
   }
 }
 

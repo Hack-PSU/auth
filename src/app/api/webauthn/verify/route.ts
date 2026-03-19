@@ -11,6 +11,35 @@ import {
   clearChallengeCookies,
 } from "@/lib/webauthn-server";
 
+/**
+ * Look up a user by credential ID using the top-level index collection.
+ * Returns { uid, storedCredential } or null.
+ */
+async function lookupCredentialByIndex(
+  db: FirebaseFirestore.Firestore,
+  credentialId: string,
+) {
+  const indexDoc = await db
+    .collection("webauthn-credential-index")
+    .doc(credentialId)
+    .get();
+
+  if (!indexDoc.exists) return null;
+
+  const { uid } = indexDoc.data()!;
+
+  const credDoc = await db
+    .collection("users")
+    .doc(uid)
+    .collection("webauthn-credentials")
+    .doc(credentialId)
+    .get();
+
+  if (!credDoc.exists) return null;
+
+  return { uid: uid as string, storedCredential: credDoc.data()!, credDoc };
+}
+
 export async function POST(request: NextRequest) {
   const cookieStore = await cookies();
 
@@ -28,13 +57,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Registration needs either uid (add-passkey) or email (new user).
-    // Authentication always needs uid.
-    if (flow === "authentication" && !uid) {
-      return NextResponse.json(
-        { error: "Invalid session state" },
-        { status: 401 },
-      );
-    }
+    // Authentication can have uid (email-based) or neither (discoverable).
     if (flow === "registration" && !uid && !email) {
       return NextResponse.json(
         { error: "Invalid session state" },
@@ -78,7 +101,6 @@ export async function POST(request: NextRequest) {
       // Determine the user id — either existing (add-passkey) or create new.
       let resolvedUid = uid;
       if (!resolvedUid && email) {
-        // New user — create the Firebase account now that registration succeeded.
         const newUser = await admin.auth().createUser({
           email,
           displayName: email,
@@ -95,20 +117,32 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      // Store the credential in Firestore
-      await db
-        .collection("users")
-        .doc(resolvedUid)
-        .collection("webauthn-credentials")
-        .doc(credInfo.id)
-        .set({
+      // Store the credential + index entry in a batch
+      const batch = db.batch();
+
+      batch.set(
+        db
+          .collection("users")
+          .doc(resolvedUid)
+          .collection("webauthn-credentials")
+          .doc(credInfo.id),
+        {
           credentialID: credInfo.id,
           publicKey: Buffer.from(credInfo.publicKey).toString("base64"),
           counter: credInfo.counter,
           transports: credInfo.transports || [],
           createdAt: admin.firestore.FieldValue.serverTimestamp(),
           lastUsed: admin.firestore.FieldValue.serverTimestamp(),
-        });
+        },
+      );
+
+      // Top-level index: credentialId → uid (for discoverable auth lookup)
+      batch.set(
+        db.collection("webauthn-credential-index").doc(credInfo.id),
+        { uid: resolvedUid },
+      );
+
+      await batch.commit();
 
       const customToken = await admin.auth().createCustomToken(resolvedUid);
       clearChallengeCookies(cookieStore);
@@ -124,30 +158,48 @@ export async function POST(request: NextRequest) {
     }
 
     // --- Authentication verification ---
-    if (!uid) {
-      clearChallengeCookies(cookieStore);
-      return NextResponse.json(
-        { error: "Invalid session state" },
-        { status: 401 },
-      );
+
+    let resolvedUid: string;
+    let storedCredential: FirebaseFirestore.DocumentData;
+    let credDocRef: FirebaseFirestore.DocumentReference;
+
+    if (uid) {
+      // Email-based flow — we know the user
+      const credentialDoc = await db
+        .collection("users")
+        .doc(uid)
+        .collection("webauthn-credentials")
+        .doc(credential.id)
+        .get();
+
+      if (!credentialDoc.exists) {
+        clearChallengeCookies(cookieStore);
+        return NextResponse.json(
+          { error: "Credential not found" },
+          { status: 404 },
+        );
+      }
+
+      resolvedUid = uid;
+      storedCredential = credentialDoc.data()!;
+      credDocRef = credentialDoc.ref;
+    } else {
+      // Discoverable flow — look up user by credential ID from index
+      const result = await lookupCredentialByIndex(db, credential.id);
+      if (!result) {
+        clearChallengeCookies(cookieStore);
+        return NextResponse.json(
+          {
+            error: "Passkey not recognized. You may need to sign in another way.",
+          },
+          { status: 404 },
+        );
+      }
+
+      resolvedUid = result.uid;
+      storedCredential = result.storedCredential;
+      credDocRef = result.credDoc.ref;
     }
-
-    const credentialDoc = await db
-      .collection("users")
-      .doc(uid)
-      .collection("webauthn-credentials")
-      .doc(credential.id)
-      .get();
-
-    if (!credentialDoc.exists) {
-      clearChallengeCookies(cookieStore);
-      return NextResponse.json(
-        { error: "Credential not found" },
-        { status: 404 },
-      );
-    }
-
-    const storedCredential = credentialDoc.data()!;
 
     const verification = await verifyAuthenticationResponse({
       response: credential,
@@ -171,12 +223,12 @@ export async function POST(request: NextRequest) {
     }
 
     // Update the counter and last-used timestamp
-    await credentialDoc.ref.update({
+    await credDocRef.update({
       counter: verification.authenticationInfo.newCounter,
       lastUsed: admin.firestore.FieldValue.serverTimestamp(),
     });
 
-    const customToken = await admin.auth().createCustomToken(uid);
+    const customToken = await admin.auth().createCustomToken(resolvedUid);
     clearChallengeCookies(cookieStore);
 
     return NextResponse.json({
@@ -186,7 +238,6 @@ export async function POST(request: NextRequest) {
       message: "Signed in successfully!",
     });
   } catch (error) {
-    // Always clean up cookies on unexpected errors
     clearChallengeCookies(cookieStore);
     console.error("Error verifying credential:", error);
     const message =

@@ -113,6 +113,71 @@ export async function authenticateWithEmail(
   }
 }
 
+/**
+ * Sign in with a discoverable credential (passkey).
+ * No email needed — the browser shows all saved passkeys for this site.
+ */
+export async function authenticateWithPasskey(): Promise<WebAuthnResult> {
+  try {
+    const optionsResponse = await fetch("/api/webauthn/get-options", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({}),
+    });
+
+    const data = await optionsResponse.json();
+
+    if (!optionsResponse.ok) {
+      throw new Error(data.error || "Failed to get authentication options");
+    }
+
+    const { options, flow } = data;
+
+    let credential;
+    try {
+      credential = await startAuthentication({ optionsJSON: options });
+    } catch (error) {
+      if (isUserCancellation(error)) {
+        return {
+          success: false,
+          error: "Passkey prompt was cancelled. You can try again when ready.",
+          cancelled: true,
+        };
+      }
+      throw error;
+    }
+
+    const verificationResponse = await fetch("/api/webauthn/verify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ credential }),
+    });
+
+    const verificationResult = await verificationResponse.json();
+
+    if (!verificationResponse.ok || !verificationResult.verified) {
+      throw new Error(verificationResult.error || "Verification failed");
+    }
+
+    if (verificationResult.customToken) {
+      await signInWithCustomToken(auth, verificationResult.customToken);
+    }
+
+    return {
+      success: true,
+      message: verificationResult.message || "Signed in!",
+      flow,
+      isNewUser: false,
+    };
+  } catch (error) {
+    console.error("WebAuthn passkey error:", error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Authentication failed",
+    };
+  }
+}
+
 export async function addPasskeyToAccount(
   idToken: string,
 ): Promise<WebAuthnResult> {
