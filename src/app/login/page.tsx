@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useForm, FormProvider, Controller } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { useFirebase } from "@/common/context/FirebaseProvider";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -60,7 +60,7 @@ function LoginForm() {
 
   const {
     handleSubmit,
-    control,
+    register,
     formState: { errors },
   } = methods;
 
@@ -222,26 +222,20 @@ function LoginForm() {
                   </Label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                    <Controller
-                      name="email"
-                      control={control}
-                      rules={{
+                    <Input
+                      id="email"
+                      type="email"
+                      autoComplete="email"
+                      placeholder="you@example.com"
+                      className="pl-10 h-12 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                      autoFocus
+                      {...register("email", {
                         required: "Email is required",
                         pattern: {
                           value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                           message: "Please enter a valid email address",
                         },
-                      }}
-                      render={({ field }) => (
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="you@example.com"
-                          className="pl-10 h-12 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                          {...field}
-                          autoFocus
-                        />
-                      )}
+                      })}
                     />
                   </div>
                   {errors.email && (
@@ -282,25 +276,19 @@ function LoginForm() {
                       </Label>
                       <div className="relative">
                         <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                        <Controller
-                          name="password"
-                          control={control}
-                          rules={{
+                        <Input
+                          id="password"
+                          type={showPassword ? "text" : "password"}
+                          autoComplete="current-password"
+                          placeholder="Enter your password"
+                          className="pl-10 pr-12 h-12 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                          {...register("password", {
                             required: "Password is required",
                             minLength: {
                               value: 6,
                               message: "Password must be at least 6 characters",
                             },
-                          }}
-                          render={({ field }) => (
-                            <Input
-                              id="password"
-                              type={showPassword ? "text" : "password"}
-                              placeholder="Enter your password"
-                              className="pl-10 pr-12 h-12 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                              {...field}
-                            />
-                          )}
+                          })}
                         />
                         <button
                           type="button"
