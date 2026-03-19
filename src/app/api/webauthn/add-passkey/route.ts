@@ -89,8 +89,10 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error("Error generating passkey registration options:", error);
+    const message =
+      error instanceof Error ? error.message : "Unknown error";
     return NextResponse.json(
-      { error: "Failed to generate passkey registration options" },
+      { error: `Failed to generate passkey registration options: ${message}` },
       { status: 500 },
     );
   }

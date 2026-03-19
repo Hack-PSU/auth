@@ -189,8 +189,10 @@ export async function POST(request: NextRequest) {
     // Always clean up cookies on unexpected errors
     clearChallengeCookies(cookieStore);
     console.error("Error verifying credential:", error);
+    const message =
+      error instanceof Error ? error.message : "Unknown error";
     return NextResponse.json(
-      { error: "Failed to verify credential" },
+      { error: `Failed to verify credential: ${message}` },
       { status: 500 },
     );
   }
