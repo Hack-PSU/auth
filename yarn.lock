@@ -1225,10 +1225,15 @@
   resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.25.1.tgz#e4a5c5bfd1d74559395322a2f772e33437c3b960"
   integrity sha512-76enEGwLVtcCTbfAr1wJ6zi4tYzVkGsqJx+H9JiX0K8/VxuKdbOtVShsOJhTD9uvFfTeW3DX+PSCelcqWrRRkw==
 
-"@posthog/types@1.365.4":
-  version "1.365.4"
-  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.365.4.tgz#8ac55add8cb2c65d06d87eafc4a20b645a6c6502"
-  integrity sha512-59ImmdPc+EG0ik6p1XSdqi+ivHZOMR/B0E4054h92mikKA09wn7CCNqM/ieKrSlGgX3nU0g/LlTBsZghYxGUWg==
+"@posthog/core@1.25.2":
+  version "1.25.2"
+  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.25.2.tgz#94a7b7ae44739fa945eaf688126f9af3435473d7"
+  integrity sha512-h2FO7ut/BbfwpAXWpwdDHTzQgUo9ibDFEs6ZO+3cI3KPWQt5XwczK1OLAuPprcjm8T/jl0SH8jSFo5XdU4RbTg==
+
+"@posthog/types@1.365.5":
+  version "1.365.5"
+  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.365.5.tgz#e5de9c6f3a3c14b1e767f0de57168411b54775b6"
+  integrity sha512-BCdDP8AC9ruAelYWSjXFRAySY1KamLCE2KEMhdsgIjcExHzVPqwg+K5xyGR6KqBvAbXhKqtkS46pKGS8lJXZCg==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -4110,17 +4115,17 @@ postcss@^8.5.6:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.365.4"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.365.4.tgz#ff2ae8c54917e7c4cedaed2959d95268e43a4dae"
-  integrity sha512-PO0iPpRz9z/3k41Rrb/SPW4lX60P3hfYINGI+BaK2V8gP/JOPXSjwDt/6nsAhEvKhR0PtpmUNut4WilS8REvzQ==
+  version "1.365.5"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.365.5.tgz#b9f23fbc5cd76fc39e57eed7e630ea62a2c12815"
+  integrity sha512-BJw3cmBykQHY/TK82s8UsUyQPjjMPVsI7Wy2eZRXf+GxhLnHmXZj50bQAfAKlTLHv3qwDpld17bGKXC9zLwVhg==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
     "@opentelemetry/api-logs" "^0.208.0"
     "@opentelemetry/exporter-logs-otlp-http" "^0.208.0"
     "@opentelemetry/resources" "^2.2.0"
     "@opentelemetry/sdk-logs" "^0.208.0"
-    "@posthog/core" "1.25.1"
-    "@posthog/types" "1.365.4"
+    "@posthog/core" "1.25.2"
+    "@posthog/types" "1.365.5"
     core-js "^3.38.1"
     dompurify "^3.3.2"
     fflate "^0.4.8"
