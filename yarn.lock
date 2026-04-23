@@ -1155,20 +1155,15 @@
     tslib "^2.8.1"
     tsyringe "^4.10.0"
 
-"@posthog/core@1.25.3":
-  version "1.25.3"
-  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.25.3.tgz#91c40cf090b2ed8883dd91cef9b2edc292c022e8"
-  integrity sha512-yE0T2NUwRMsfS/fSh7lK7/mt4JXRDVmTTwq/vLanDVzH2Rw7C9RVlMw7YePlNxRHvW8ef3PrZ0X9zwWa4MRRDg==
-
 "@posthog/core@1.26.0":
   version "1.26.0"
   resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.26.0.tgz#609e6929e038eee1b419854b14a870ea71b55a68"
   integrity sha512-q6pSkW7V9RC3rIXjJBo7IBXOH2KPJEh8o+xIcSqw7QD4vq7OYVzTJfUIvkD38+sm54RG/61/3QaPdpQZkDnOyg==
 
-"@posthog/types@1.369.5":
-  version "1.369.5"
-  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.369.5.tgz#0f16d56c711d84fca7da49c2f72437f6c49a92e5"
-  integrity sha512-yajos1l/pugBrp3++MDc/k2Dz6vExxJVERiR6felxlWjSN+HOjkJfWsGqDw5PsG0fFQ43n3IR2B0OHKKApX/Kw==
+"@posthog/types@1.370.1":
+  version "1.370.1"
+  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.370.1.tgz#1d5c4472afec70bc29e9040e05aedb246eecbee6"
+  integrity sha512-91AGn76zDgitMphnjrhvZ0WZ1oPipW4P8vrhVz/uKjtisYTZtokjrxeZyD+3imx4nYGyi6eNpPcvPdWXNBmN/A==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -3978,17 +3973,17 @@ postcss@^8.5.6:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.369.5"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.369.5.tgz#9353cacca3b8bccd15ecb7c6c355ac7e0b73b4a2"
-  integrity sha512-RmvxOd8DHWyd5LwlKDeem3m6C9OKgsmZJSxUwmOc+Ldp5TgR+De6OiB0OW+Re0GqoVGqANCBSxYgYX4aD8YPLA==
+  version "1.370.1"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.370.1.tgz#41d1e8320790ed97df1bc56462ce76205fde9387"
+  integrity sha512-cj9V6L0qyf0htMfBshBdwvcUEfhTfqUEQPI/ly2dN4kZx4QmhmKERcelSI9CMKoBD1gX5Fp+f/cNTwKvzDvjsQ==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
     "@opentelemetry/api-logs" "^0.208.0"
     "@opentelemetry/exporter-logs-otlp-http" "^0.208.0"
     "@opentelemetry/resources" "^2.2.0"
     "@opentelemetry/sdk-logs" "^0.208.0"
-    "@posthog/core" "1.25.3"
-    "@posthog/types" "1.369.5"
+    "@posthog/core" "1.26.0"
+    "@posthog/types" "1.370.1"
     core-js "^3.38.1"
     dompurify "^3.3.2"
     fflate "^0.4.8"
