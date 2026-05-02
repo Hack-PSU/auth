@@ -1155,24 +1155,12 @@
     tslib "^2.8.1"
     tsyringe "^4.10.0"
 
-"@posthog/core@1.27.9":
-  version "1.27.9"
-  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.27.9.tgz#6486534530c9650101f6853e1b7e3b2f7431296b"
-  integrity sha512-7FFWWYWvRFxQqDXYzv8klCjk0Pox1IpuPr61eeOCBsKkmt6xvvHwH0jc3ObvwDXZj2NSAWg+V9N2E2F1ul2CRQ==
-  dependencies:
-    "@posthog/types" "1.372.5"
-
 "@posthog/core@1.28.0":
   version "1.28.0"
   resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.28.0.tgz#f9b2be00f66cbf92ae90a4475a043a903a275e3b"
   integrity sha512-753giUMWuk602UtS101tDZuNcwiKkr+3UEhLgfOwHAk2W32n53knOxAjyWT0JwMq5/+0uSQ2y4uaZXQAxwvBSw==
   dependencies:
     "@posthog/types" "1.372.6"
-
-"@posthog/types@1.372.5":
-  version "1.372.5"
-  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.372.5.tgz#45bfa38f95290c9c7afea78681c77c43031335f5"
-  integrity sha512-6sYOISiHjfr50FNlFcd8Zw/zCDJzxRCdC7aZzwTCvJABEOLWf41kcsiozi2c3q1cNXYL018X7DAGkUukrNLVIw==
 
 "@posthog/types@1.372.6":
   version "1.372.6"
@@ -4006,11 +3994,11 @@ posthog-js@^1.257.0:
     web-vitals "^5.1.0"
 
 posthog-node@^5.5.1:
-  version "5.32.0"
-  resolved "https://registry.yarnpkg.com/posthog-node/-/posthog-node-5.32.0.tgz#9b8a364bdb0fb99e84e606fd4773f9858594dd60"
-  integrity sha512-kEsQFrpQrrrXQlVzXF5yTyHfnKAP/37W6ta9cFHh8ISlKtyYEKuLGTc5ssfpn4RrRS6r0xsJSK94ScFTQTSEOg==
+  version "5.33.0"
+  resolved "https://registry.yarnpkg.com/posthog-node/-/posthog-node-5.33.0.tgz#8f4f1e4e4ee3c53c6c71c11a62433c3465125ee4"
+  integrity sha512-9Sj1kKQTFlHoiWl0LvD3+8InhlD9jxeIiJrMLtU87bnYuQUDqAVR16v9/ZGaQ9C0vDVGVJJQG1a6XYeySy9hmg==
   dependencies:
-    "@posthog/core" "1.27.9"
+    "@posthog/core" "1.28.0"
 
 preact@^10.28.2:
   version "10.29.1"
