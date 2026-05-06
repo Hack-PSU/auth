@@ -1162,10 +1162,22 @@
   dependencies:
     "@posthog/types" "1.372.8"
 
+"@posthog/core@1.28.3":
+  version "1.28.3"
+  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.28.3.tgz#91686a73f1bd5e3605621002e0d354cf9e0344c4"
+  integrity sha512-SOy0aphKawZzp8jxfeOpTcXPwi6ii0I2V6tX8YXnM+WbxKKR/R+BXLK0jS6LV8kZtW3H5YxmPAfuIbUP1UnGTw==
+  dependencies:
+    "@posthog/types" "1.372.9"
+
 "@posthog/types@1.372.8":
   version "1.372.8"
   resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.372.8.tgz#651a9089a1adf45845e844e9e8a2a7c7550c1a8a"
   integrity sha512-ALpfCnWsMSM9Cw/6kyLPVpd81ZReEdZwmDxOi+DTJuIo7wDxBiu2cAsjOuA6D/AL22v7HOJrHsmBAPAWqS5X7Q==
+
+"@posthog/types@1.372.9":
+  version "1.372.9"
+  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.372.9.tgz#40691ca94675257f6bb9d0b92aac9e3d997ae261"
+  integrity sha512-B7k9S+H9WUKHXxe1HOkQWbpWtMcrBvsodm5stZaLQ3pYxf9TowtwssdzTtX4hHjzSYqgrS1IpNnJX4vs1KgBzA==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -3975,17 +3987,17 @@ postcss@^8.5.6:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.372.8"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.372.8.tgz#896761ee2127e642101158c1a7ec3ceba95390db"
-  integrity sha512-NAFWVScFGnU5jgGNLkrY/UnGH82uULs9RsJ/f26LkLn1l0MOZfq+/z+2RaOOQQX4NHruIVuxqz3J/50bgRG68A==
+  version "1.372.9"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.372.9.tgz#e33b0635219287a108ca61cba051597ab2f58fd7"
+  integrity sha512-qFhTxxrONCO4YBubuEp6/f3beRPku8OqgfHwpSro/XcDU0oPXMVyvsXGUnxhjaq4PvQb79PwvquAX0/HIGcnWg==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
     "@opentelemetry/api-logs" "^0.208.0"
     "@opentelemetry/exporter-logs-otlp-http" "^0.208.0"
     "@opentelemetry/resources" "^2.2.0"
     "@opentelemetry/sdk-logs" "^0.208.0"
-    "@posthog/core" "1.28.2"
-    "@posthog/types" "1.372.8"
+    "@posthog/core" "1.28.3"
+    "@posthog/types" "1.372.9"
     core-js "^3.38.1"
     dompurify "^3.3.2"
     fflate "^0.4.8"
