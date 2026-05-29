@@ -1174,10 +1174,22 @@
   dependencies:
     "@posthog/types" "1.376.3"
 
+"@posthog/core@1.29.13":
+  version "1.29.13"
+  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.29.13.tgz#45fa76fc1bef5d581bf51678e046c760211191ae"
+  integrity sha512-7Me5zaeAue/wmA364Go8ChYbsVAfNAHbtDxXopWu3D6hq9PVScUcauRgjD1njgvP8NzN91SrIllE+pri3XvJVw==
+  dependencies:
+    "@posthog/types" "1.376.4"
+
 "@posthog/types@1.376.3":
   version "1.376.3"
   resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.376.3.tgz#63fead9142c4834670a756df604c6a74d773485e"
   integrity sha512-w21lBoz3/ZGw7BZT7t2lJq1mpJwMvWpZijW7vEwBFNAQlq0KfKf2mj5KKUYZMXM1GdIQ0jHnn931uXPB1Ae60w==
+
+"@posthog/types@1.376.4":
+  version "1.376.4"
+  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.376.4.tgz#a84df993a8f02d5c17c0af4f36d3f2208c3c4086"
+  integrity sha512-EoDEvA925lf6yxPpbP4wozlXgu4b9WEqxZlFBUDd4k2akP5R/RWyHpvQT8aYyfY6BtSLn8TnVwxPQOM4b90isA==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -3994,17 +4006,17 @@ postcss@^8.5.10:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.376.3"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.376.3.tgz#2ee3997ca3f92f62ab9942b4a001ede2a9b883a9"
-  integrity sha512-Wmj4N6E352b8aWt/AjRYIOfagQgOlkb8LCD/r7i1eGj8WPBhrYLEXojQeZ+jndbiPbRo21l24bFJso7fyNafWQ==
+  version "1.376.4"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.376.4.tgz#f32ee06e5ec6dae55c853d69c6d283015d6e93a4"
+  integrity sha512-SGhZWMBpd9GyV1+Klhx/vRwyy/reRRpJGYc1n1rYG9+LAML/YUEIrfl3Y2CLvuwmhKbPVY5W98Z7pAVQ88Qf1A==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
     "@opentelemetry/api-logs" "^0.208.0"
     "@opentelemetry/exporter-logs-otlp-http" "^0.208.0"
     "@opentelemetry/resources" "^2.2.0"
     "@opentelemetry/sdk-logs" "^0.208.0"
-    "@posthog/core" "1.29.12"
-    "@posthog/types" "1.376.3"
+    "@posthog/core" "1.29.13"
+    "@posthog/types" "1.376.4"
     core-js "^3.38.1"
     dompurify "^3.3.2"
     fflate "^0.4.8"
@@ -4794,9 +4806,9 @@ web-vitals@^4.2.4:
   integrity sha512-r4DIlprAGwJ7YM11VZp4R884m0Vmgr6EAKe3P+kO0PPj3Unqyvv59rczf6UiGcb9Z8QxZVcqKNwv/g0WNdWwsw==
 
 web-vitals@^5.1.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-5.2.0.tgz#5de39106a652228bb5c40021d62b669d213e6e17"
-  integrity sha512-i2z98bEmaCqSDiHEDu+gHl/dmR4Q+TxFmG3/13KkMO+o8UxQzCqWaDRCiLgEa41nlO4VpXSI0ASa1xWmO9sBlA==
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-5.3.0.tgz#a67f57f229fdf68be99eb99d3725946def284ff3"
+  integrity sha512-q6LWsLatGYZp5VGBIOvbTj6JBV2nOmC8KvWztXBmwJcfFAzhwKwbOxhUH306XY3CcaZDUlSmSuNPBsCn0bFu+g==
 
 webidl-conversions@^3.0.0:
   version "3.0.1"
