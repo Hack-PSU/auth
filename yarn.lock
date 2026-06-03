@@ -1167,24 +1167,12 @@
     tslib "^2.8.1"
     tsyringe "^4.10.0"
 
-"@posthog/core@1.30.2":
-  version "1.30.2"
-  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.30.2.tgz#102dabfe70aab682ad9425bbde0f31824bd0776d"
-  integrity sha512-d7RTpfi+/q5+SZ+4f1WhanfEtNBz9onMmUxn3BO0GDT8N5ZT4DEP3LqFisqeP+xkJTaFPWCOVA/nGyKmUX9y9g==
-  dependencies:
-    "@posthog/types" "1.378.1"
-
 "@posthog/core@1.30.3":
   version "1.30.3"
   resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.30.3.tgz#6e1ffa31d2ab9ee57e05f9cef2a051e59ace104e"
   integrity sha512-mGIN4Du1a8fKxV5WfnEtogq3VOQLa4PfWMUg5uMIMDD+fp5bhTA4QG4oYAea4vBTZ1ZOanQbjXcX4b5k2X93Qw==
   dependencies:
     "@posthog/types" "1.379.0"
-
-"@posthog/types@1.378.1":
-  version "1.378.1"
-  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.378.1.tgz#9b2666b1c6ce41c2f1aa98f5feb4cb5e811e765f"
-  integrity sha512-bKOXVWySe5oKFjV6X9VW9jngIm14d4BvnT7l/Eb7e6DrT5uD+XclvbRdhC5f1/l5KwoIU+qswBobHRPlix2D1w==
 
 "@posthog/types@1.379.0":
   version "1.379.0"
@@ -3999,17 +3987,17 @@ postcss@^8.5.10:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.378.1"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.378.1.tgz#6d209cb4e1be201e5afb0e2b30f9fe4de6e48265"
-  integrity sha512-pr9hu7J9eKCWlDxGfn5jbqcaTvaS+quRVxMKo7XRiKHPtFpXoIStOctkRTMumz8LucgD4l5NVbtsaZDi6OrrLQ==
+  version "1.379.0"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.379.0.tgz#417294c797e8a44479baebf726bfb8e6a1518eee"
+  integrity sha512-cSESmnPvIaY/pyhV5a6pF00q8tqmXlJBQWX9T7dbBh9TXhVM5oQVi7g77vWGD9G8wq4iNF5ZOxqeAK9dpOSOYg==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
     "@opentelemetry/api-logs" "^0.208.0"
     "@opentelemetry/exporter-logs-otlp-http" "^0.208.0"
     "@opentelemetry/resources" "^2.2.0"
     "@opentelemetry/sdk-logs" "^0.208.0"
-    "@posthog/core" "1.30.2"
-    "@posthog/types" "1.378.1"
+    "@posthog/core" "1.30.3"
+    "@posthog/types" "1.379.0"
     core-js "^3.38.1"
     dompurify "^3.3.2"
     fflate "^0.4.8"
