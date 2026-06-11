@@ -1074,22 +1074,22 @@
   dependencies:
     "@posthog/types" "1.383.3"
 
-"@posthog/core@1.32.1":
-  version "1.32.1"
-  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.32.1.tgz#3f68ca970935f17674a97c70cb38d181a01767e2"
-  integrity sha512-ELq0TQ/MCCj1bY/oFsX53HV6GjRgtzcixhvcPG3Rv+0tU+NaS5Seg1f4cRpfFDTQlIN0Fu+r9oHnFcnXrg7Eew==
+"@posthog/core@1.32.3":
+  version "1.32.3"
+  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.32.3.tgz#4ea8177e007c17ffee74def62e41e0f6951ad343"
+  integrity sha512-vwOEMfZvGv5XxNWV7p9I52NSmvFNMhyW2IHpIoUHW5jLkgUrknzJW1H/qxVGSIrNNVQkfsoaDFzDhJdg10pgrA==
   dependencies:
-    "@posthog/types" "1.386.1"
+    "@posthog/types" "1.386.3"
 
 "@posthog/types@1.383.3":
   version "1.383.3"
   resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.383.3.tgz#d451a3ae9223ec06834d5024f32ef9fa6da4576f"
   integrity sha512-N4jtmLaJxzjQ/C0UHnF0igQPSwUqwScPDv9ePGjKCfDomIEUcO3+c6pBrjTp7woxuMQ49BmyM/pV4/SOBPpe0Q==
 
-"@posthog/types@1.386.1":
-  version "1.386.1"
-  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.386.1.tgz#bf6961243fbc21e10c5d0142bd081c2a80dd58c5"
-  integrity sha512-dsv3xOpKdJIIzcHLzSQ2SZtOvoN2zQMs2thrppTC5e3IVkJUxey+6bY9zOt8FoWHCwQ6jJbNtOp0lVanfbPNeA==
+"@posthog/types@1.386.3":
+  version "1.386.3"
+  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.386.3.tgz#2703a3b83a80c24524283c515334bdf407be9f9b"
+  integrity sha512-LqJoiQi2eyWn7rCUgnn+D+F3Efp6+04o72bjSX6kWHx0nFaYNC/nJuAIRliDTY/X7GPIUAaHAcSjbMI/9wfX1Q==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -3913,11 +3913,11 @@ posthog-js@^1.257.0:
     web-vitals "^5.1.0"
 
 posthog-node@^5.5.1:
-  version "5.36.15"
-  resolved "https://registry.yarnpkg.com/posthog-node/-/posthog-node-5.36.15.tgz#047e210f731067f6ab4fa6c63ac0f02cce441237"
-  integrity sha512-rEy0HWxJCPo06UkAv5vgo0VkFsQdQa6yX74LhBRYUjG1QFEAm39PcVzSmiX4YH2x6+OJzZ0UZ17g+wU1fzvmZQ==
+  version "5.36.17"
+  resolved "https://registry.yarnpkg.com/posthog-node/-/posthog-node-5.36.17.tgz#ec1d0cfbfcda83064ca281045251d8713a6f0745"
+  integrity sha512-ed1LT4a9hhiFJizB6XX7dkYYLVPAFHfUpkQSns7BRxoUyhFnvMq15QENKeAOUEKQgPmnaq2I+xNLdAHN0o9eAA==
   dependencies:
-    "@posthog/core" "1.32.1"
+    "@posthog/core" "1.32.3"
 
 preact@^10.28.2:
   version "10.29.2"
