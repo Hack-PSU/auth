@@ -1074,22 +1074,22 @@
   dependencies:
     "@posthog/types" "1.386.3"
 
-"@posthog/core@^1.32.4":
-  version "1.32.5"
-  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.32.5.tgz#49c629b161c138f5a51a388d79feea7dc4d5bc6d"
-  integrity sha512-Vmr6LZms7QEP1ljfTRRBVtLkeEHMrTmLECt0FXPLwUIgPwxOgvBdAYwRMWyP13WuN/XQweo1tJ9J1DxHNAF3qg==
+"@posthog/core@^1.33.0":
+  version "1.33.0"
+  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.33.0.tgz#58a1901b1cae2f9ea1a6e5f94d0abefe360c50f4"
+  integrity sha512-Xk5O4g70SlsodD941j5GJTto2DgteKslmuhQ1kH5nR03JVOgdOw7rBesyWGhYkEdkxr8Vhvx33f1NTEZgejL2A==
   dependencies:
-    "@posthog/types" "^1.386.4"
+    "@posthog/types" "^1.387.0"
 
 "@posthog/types@1.386.3":
   version "1.386.3"
   resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.386.3.tgz#2703a3b83a80c24524283c515334bdf407be9f9b"
   integrity sha512-LqJoiQi2eyWn7rCUgnn+D+F3Efp6+04o72bjSX6kWHx0nFaYNC/nJuAIRliDTY/X7GPIUAaHAcSjbMI/9wfX1Q==
 
-"@posthog/types@^1.386.4":
-  version "1.386.4"
-  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.386.4.tgz#80abf91f9c087d9d417629302259cb5c18122761"
-  integrity sha512-UgE9+5+wkZg7yc2MpW5G32/6zYW8fAbXJkG8WGnrb4X8OKWzNa9cWeNCd82vKok+TSoRpM4qiYQFtBSpJS1dsw==
+"@posthog/types@^1.387.0":
+  version "1.387.0"
+  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.387.0.tgz#fc4e3241e2daef53a3fc70326090ad40403d2c26"
+  integrity sha512-XR0B1geABbnUlSNv4RuFWvk19D870B668C/XzcKDctAZ+xCH5gmGM0oltGbA9yj+2ia9Y65nOrDYKN6Whu1oBw==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -3899,12 +3899,12 @@ postcss@8.5.15:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.386.8"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.386.8.tgz#d48dbcc0b756bea0c9e83252ff7af98395eb7641"
-  integrity sha512-L4cJD1sleUULE7K4mZQI5wpS24NHGtNmFw1rPHruc579unVzHuooHiVDEHp/qyNnhNxtNE6alBTiVORbYnRTSw==
+  version "1.387.0"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.387.0.tgz#52de7b37fab6a601e0e786a5267c2a57bbd7fce0"
+  integrity sha512-Pv1jUMySMN62zoAxdJBJPV8n62lkHdjuWhpeU7izczc5Dqbx3hhqO2hkrNTI8Yx1ezmWk2qUHZs03FuOBubdFQ==
   dependencies:
-    "@posthog/core" "^1.32.4"
-    "@posthog/types" "^1.386.4"
+    "@posthog/core" "^1.33.0"
+    "@posthog/types" "^1.387.0"
     core-js "^3.38.1"
     dompurify "^3.3.2"
     fflate "^0.4.8"
