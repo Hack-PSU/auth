@@ -1075,10 +1075,22 @@
   dependencies:
     "@posthog/types" "^1.390.0"
 
-"@posthog/types@^1.390.0", "@posthog/types@^1.390.1":
+"@posthog/core@^1.35.3":
+  version "1.35.3"
+  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.35.3.tgz#b1edc67adb7e7c99b8292a78ab81eed4592cdae2"
+  integrity sha512-EsGPbSLl39Jgo2KZ+kI9UAxFnh5nddaN5bNm2rXvUwF+vGmam9eN1EXeNbxhRU7ulEeIiGdm7XjoU7pzavkgIQ==
+  dependencies:
+    "@posthog/types" "^1.390.2"
+
+"@posthog/types@^1.390.0":
   version "1.390.1"
   resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.390.1.tgz#7409edfe7db291f920dfc8f3a61d909339d94a5a"
   integrity sha512-GPyZY8eOa/c/EKFLW0Aa1ECVysa1TFLenGPgYbRz/PX/nrzd1IiQPlHAYLkeifE6oBVxHiv5AwkTyzX/fdOYSA==
+
+"@posthog/types@^1.390.2":
+  version "1.390.2"
+  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.390.2.tgz#d3e69400b63ea0f92d66bcde66cb945f211acb2d"
+  integrity sha512-WcfKz2GNn2vfDX8vXmJYbKxegPxVWHuDQ/pHdAn0HoZDXDFnEp/+x3qBQA+fEvtbPjjtjgAt2wIgJMlM7asx7g==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -3888,12 +3900,12 @@ postcss@8.5.15:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.391.0"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.391.0.tgz#29c53ddca383a9213fe5cd7bf4939f519b0542aa"
-  integrity sha512-ad/wGG0aDddmTRWzwBkqRXoDBZUwyJBRIYjKyEGVDFNZFh/bvU82FbWivcekxPYBjZDiUPpWv9ESZZwlsmc0Mw==
+  version "1.391.2"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.391.2.tgz#fa75312600e9d83a9d4da01c0223df4910d909f0"
+  integrity sha512-q0DZN6ljchSnAFJIXf+sQFTPlsLjTlRa+TvrL+QRb6413BGtib/MNiQy1bnwLKt8KR+f6xJYvkqdLyty9s4Aww==
   dependencies:
-    "@posthog/core" "^1.35.2"
-    "@posthog/types" "^1.390.1"
+    "@posthog/core" "^1.35.3"
+    "@posthog/types" "^1.390.2"
     core-js "^3.38.1"
     dompurify "^3.3.2"
     fflate "^0.4.8"
