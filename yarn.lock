@@ -1068,24 +1068,12 @@
     tslib "^2.8.1"
     tsyringe "^4.10.0"
 
-"@posthog/core@^1.38.0":
-  version "1.38.0"
-  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.38.0.tgz#595a32d1ad59945eae6f83538c94852f214685d2"
-  integrity sha512-QLrJh0hMVpEJXHNyiJR9YhvIO5tzLDedw4UHdvB+ub4fXHMtHCA8H44qgl11HWR3ajpjxtJ8hs3HyOGVF3Zc1w==
-  dependencies:
-    "@posthog/types" "^1.391.1"
-
 "@posthog/core@^1.38.1":
-  version "1.38.1"
-  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.38.1.tgz#3e379c69814d8d643dfa33308f64b0f3801e35a7"
-  integrity sha512-tsJTugsKzx47eRMjNfG272/GFf0FF0LeI+gyJ/anibpbYAzdNuX5kr6enpmJrhdgLESqzJGH8QF0+I9075Xr1Q==
+  version "1.39.0"
+  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.39.0.tgz#45fd21fbdfabe1e8581554e3a5e4f328211ed822"
+  integrity sha512-9Xk2zndTfiO6Dd+fg2wqqA1Aw/hPUb1sArU0dL+trJSFfuz65JiuJXPBqLmIyHh+CcQOmc2b01ukMEZL/yDbgQ==
   dependencies:
     "@posthog/types" "^1.392.0"
-
-"@posthog/types@^1.391.1":
-  version "1.391.1"
-  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.391.1.tgz#8d616ede20dead87451192e6036135a558311c9b"
-  integrity sha512-ASwd7Nf4pViqdYRYaNRyPYRVKWa1CcHUAUWR0XeQJLGdNnsWACBwe0sSieb/cHnKsRXjRwO/23KIY83lm/Ccpw==
 
 "@posthog/types@^1.392.0":
   version "1.392.0"
@@ -3900,12 +3888,12 @@ postcss@^8.5.15:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.395.0"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.395.0.tgz#859835101191f980796be0353fa4416e0aa5406b"
-  integrity sha512-5iTb00CGt2eQUUiBQysQiX89RAbCN6wK2sDNzvs9zv0alaY8mJ0ZySrUD3LQ+XyLhgM5pCpacBuUwChqiYDLDw==
+  version "1.396.2"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.396.2.tgz#d717d2b7b767226db6c43db6a53b57b40e502611"
+  integrity sha512-WFdS0JL+r/M7A9XQwIGbw1Xn6W7/V5TEmv1wgrq7GFcPxZ0I3TktNGtGQNmzARbI8nKedAHFkY9UPDDg+NTSQg==
   dependencies:
-    "@posthog/core" "^1.38.0"
-    "@posthog/types" "^1.391.1"
+    "@posthog/core" "^1.38.1"
+    "@posthog/types" "^1.392.0"
     core-js "^3.38.1"
     dompurify "^3.3.2"
     fflate "^0.4.8"
