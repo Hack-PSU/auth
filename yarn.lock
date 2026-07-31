@@ -3967,11 +3967,11 @@ posthog-js@^1.257.0:
     web-vitals "^5.3.0"
 
 posthog-node@^5.5.1:
-  version "5.47.0"
-  resolved "https://registry.yarnpkg.com/posthog-node/-/posthog-node-5.47.0.tgz#458c2d5dd9dfc173bce9581dc0471a5860490248"
-  integrity sha512-dp8h6rdfu9WzFSbJJxsuplmjgDFUsVFce1QPmlhWF/Fy/XWf56JRx4AZNzXRrKVb1F1p+2yWg6adLZEKcvBOzw==
+  version "5.47.3"
+  resolved "https://registry.yarnpkg.com/posthog-node/-/posthog-node-5.47.3.tgz#0240023a12ae513002759380ca762db64275db6a"
+  integrity sha512-mhKaZOGLgD5aKKTj6xNRE2K9vRJnRIj4FNZeguDNnCR0k8RKJh71KO78+UqVdOONBsMzoqb01AD/B+TtsK7YSw==
   dependencies:
-    "@posthog/core" "^1.46.0"
+    "@posthog/core" "^1.46.1"
 
 preact@^10.29.3:
   version "10.29.7"
