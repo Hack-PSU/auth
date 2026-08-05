@@ -1124,20 +1124,13 @@
     tslib "^2.8.1"
     tsyringe "^4.10.0"
 
-"@posthog/browser-common@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@posthog/browser-common/-/browser-common-0.3.1.tgz#5c1aa9ba11878c8a4ca566bc3ac4a261701c9c74"
-  integrity sha512-1nhMVY1wnHADTg8tR9yvm+lPAz5ROxznfQlBtLzB2FFo4lp/LU8lk9KyFPsARDkBxCfYachsJfvRjocL1G/AJQ==
+"@posthog/browser-common@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@posthog/browser-common/-/browser-common-0.4.0.tgz#b25c5af2aed27a5c2ddc2d4b2244e26dee710356"
+  integrity sha512-W9DCGVks15docUMPvJ2nd8NS16Gn74bsGWuaeg31beEKFSjdW8wvnQ1ETY6WSql5pYxZb3GdJmEUZVVstKSrBQ==
   dependencies:
-    "@posthog/core" "^1.46.0"
-    "@posthog/types" "^1.399.0"
-
-"@posthog/core@^1.46.0", "@posthog/core@^1.46.7":
-  version "1.46.7"
-  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.46.7.tgz#2ebdd0f8e8cb9a9588c8c94f72a05332b5b6cdea"
-  integrity sha512-Oxsa6AvXXtNhHI+BDMBvysSg9lPIrMKWP9mKKgqD9M0jgyZN1GuIxIXI3T+0h9kLRWdIFFIOGaNNrCmFTg6Dzw==
-  dependencies:
-    "@posthog/types" "^1.401.0"
+    "@posthog/core" "^1.46.8"
+    "@posthog/types" "^1.402.0"
 
 "@posthog/core@^1.46.8":
   version "1.46.8"
@@ -1146,15 +1139,10 @@
   dependencies:
     "@posthog/types" "^1.401.1"
 
-"@posthog/types@^1.399.0", "@posthog/types@^1.401.0":
-  version "1.401.0"
-  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.401.0.tgz#5846ed68014e35b1599e2aa7b4bae506a009ff43"
-  integrity sha512-tLGiHJhYoGMFkcB5kPT3eTOMAKQYd8Wsm2H+RvMkDehY2YJwLjr2wrJ3DcRddpdivqT0TYT9TAMWKSNRzNSMtg==
-
-"@posthog/types@^1.401.1":
-  version "1.401.1"
-  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.401.1.tgz#8a8e81184b9049d18bfe3b6a0853a4db60ea3f26"
-  integrity sha512-gVYXePy7cuK2ekdygeaaSNMtBlzqtYf7ULderrBam9M3X4of0ocWMPX5vRo/hdG4ONZgtfAuXrDjYhZRiR8dSA==
+"@posthog/types@^1.401.1", "@posthog/types@^1.402.0", "@posthog/types@^1.402.1":
+  version "1.402.1"
+  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.402.1.tgz#f2d3af9b53b3ed699185d815e51eb28cb4618641"
+  integrity sha512-4PZ9wMYI8m8AqJuZ9YR1IAHGVtSnYbBVBgTevrKpzZbcSe/OUwhEV2Ks//rJh/L8eMTU8R5DrD4D/hlrOwaAiQ==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -2047,9 +2035,9 @@ cookie@^1.0.2:
   integrity sha512-ei8Aos7ja0weRpFzJnEA9UHJ/7XQmqglbRwnf2ATjcB9Wq874VKH9kfjjirM6UhU2/E5fFYadylyhFldcqSidQ==
 
 core-js@^3.49.0:
-  version "3.49.0"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.49.0.tgz#8b4d520ac034311fa21aa616f017ada0e0dbbddd"
-  integrity sha512-es1U2+YTtzpwkxVLwAFdSpaIMyQaq0PBgm3YD1W3Qpsn1NAmO3KSgZfu+oGSWVu6NvLHoHCV/aYcsE5wiB7ALg==
+  version "3.50.0"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.50.0.tgz#a18646fcb0097650189b4504c803e887bcae4c0a"
+  integrity sha512-BRWgOLKkFeCgRudR6zrs8p9XJZcE14grzKMMssoYrk6krtuEZ7MTKPIY5RzOnqsEKIR9kst7wNzphttraT+Yqw==
 
 cross-spawn@^7.0.6:
   version "7.0.6"
@@ -2168,7 +2156,7 @@ doctrine@^2.1.0:
   dependencies:
     esutils "^2.0.2"
 
-dompurify@^3.3.2:
+dompurify@^3.4.12:
   version "3.4.13"
   resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-3.4.13.tgz#fc28949d59f92d62e28a3a764bcbeee35897a1be"
   integrity sha512-2vmYIoqjze2d+kakP8S/nS5shfsl587kzwEjcGlTdiksUVgFHnFCsLYDVj/JNqJVOQZGSYBTmuycv0PodwmnMQ==
@@ -3964,15 +3952,15 @@ postcss@^8.5.16:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.411.0"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.411.0.tgz#0bc68c4e5eb9f0927e94e793618c1f8f2235dc22"
-  integrity sha512-nTYMucbJHotQXHWpHH6x3UHP9IrnHqoxrIwfJeQ7yHA3rcNGF/SEa4Z0UlfssMtcXHOH5bse+8ASouc0YL+02w==
+  version "1.413.2"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.413.2.tgz#920c9b44302c30be5fd3eb5ac41120abc237b6a5"
+  integrity sha512-LddTVMdYFd0jB+p5h3ZHcho9mWNjgKn9QySCQt74iISKrmC3b7KzW2Q7W7aOF6m/NwK7NubIHqLujCER64gSRw==
   dependencies:
-    "@posthog/browser-common" "^0.3.1"
-    "@posthog/core" "^1.46.7"
-    "@posthog/types" "^1.401.0"
+    "@posthog/browser-common" "^0.4.0"
+    "@posthog/core" "^1.46.8"
+    "@posthog/types" "^1.402.1"
     core-js "^3.49.0"
-    dompurify "^3.3.2"
+    dompurify "^3.4.12"
     fflate "^0.4.8"
     preact "^10.29.3"
     query-selector-shadow-dom "^1.0.1"
