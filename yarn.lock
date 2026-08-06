@@ -3968,11 +3968,11 @@ posthog-js@^1.257.0:
     web-vitals-soft-navs "npm:web-vitals@6.0.0"
 
 posthog-node@^5.5.1:
-  version "5.48.0"
-  resolved "https://registry.yarnpkg.com/posthog-node/-/posthog-node-5.48.0.tgz#d93c4d6644782e509fe52c4697f9350562a6eddc"
-  integrity sha512-YIH82XV24aa1nnVph1ndiW/vBN2QDIKlrHNEJcmAYutMGeoGC4WeEefg7O5aD3dDcO5dzociy8sVwXq4tNDYsQ==
+  version "5.48.1"
+  resolved "https://registry.yarnpkg.com/posthog-node/-/posthog-node-5.48.1.tgz#ca709afe0eec770155aed017a09ed64537359e35"
+  integrity sha512-BxLX2SqGEQhPqCPTalpyo0RRv1NMbf7UaN7q9d/ED77ksD6XOmE7ko2vIKO8F0zPL1NtKxIi+DYXap9lvR0RaA==
   dependencies:
-    "@posthog/core" "^1.46.8"
+    "@posthog/core" "^1.46.9"
 
 preact@^10.29.3:
   version "10.29.8"
