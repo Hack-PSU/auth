@@ -1132,17 +1132,17 @@
     "@posthog/core" "^1.46.8"
     "@posthog/types" "^1.402.0"
 
-"@posthog/core@^1.46.8":
-  version "1.46.8"
-  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.46.8.tgz#e2afb03ee9012edabbbf47af1ebb187e485bf5ee"
-  integrity sha512-WQTSwlFhsWk09xngTimHiTyhFU8QZHFZEGSm+6brY3acwYdvTLcTxpIhgl/qOCgn/XoqlCFTZqU1ldWLxNntfA==
+"@posthog/core@^1.46.8", "@posthog/core@^1.46.9":
+  version "1.46.9"
+  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.46.9.tgz#c76ee98638ce263efec83e1dc974552a02b9674e"
+  integrity sha512-EXO6y5ih+jBkTCpUCuYgQmajuDZuvy6vMvflkub6pLQyi0GPlCPWVSvZZkOeQw9e2MxoD5GteeGCt9R8+UJ/yQ==
   dependencies:
-    "@posthog/types" "^1.401.1"
+    "@posthog/types" "^1.402.2"
 
-"@posthog/types@^1.401.1", "@posthog/types@^1.402.0", "@posthog/types@^1.402.1":
-  version "1.402.1"
-  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.402.1.tgz#f2d3af9b53b3ed699185d815e51eb28cb4618641"
-  integrity sha512-4PZ9wMYI8m8AqJuZ9YR1IAHGVtSnYbBVBgTevrKpzZbcSe/OUwhEV2Ks//rJh/L8eMTU8R5DrD4D/hlrOwaAiQ==
+"@posthog/types@^1.402.0", "@posthog/types@^1.402.2":
+  version "1.402.2"
+  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.402.2.tgz#13a82f000a76b2ca9265d2e880f16cf9376a1b16"
+  integrity sha512-ZZTiS4dLwF4/D0YTzS3gGSLFnhuNOY5yu4d9VGS9trGe5GW6FjIXo20p18K5BPW2RZSYSld8sdnSAY3AUXleUQ==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -3952,13 +3952,13 @@ postcss@^8.5.16:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.413.2"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.413.2.tgz#920c9b44302c30be5fd3eb5ac41120abc237b6a5"
-  integrity sha512-LddTVMdYFd0jB+p5h3ZHcho9mWNjgKn9QySCQt74iISKrmC3b7KzW2Q7W7aOF6m/NwK7NubIHqLujCER64gSRw==
+  version "1.413.3"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.413.3.tgz#0f4c48276ed1e8bc88078bede3ffb38b5df692ac"
+  integrity sha512-UoAymtZYVr84Ldp0ITXmlK4Q3GE8vU7GW8wC+aCput5RrKVJ8wkAPc12n3ElmKRlvLL+oD+Fotjc7n3wYG0RGQ==
   dependencies:
     "@posthog/browser-common" "^0.4.0"
-    "@posthog/core" "^1.46.8"
-    "@posthog/types" "^1.402.1"
+    "@posthog/core" "^1.46.9"
+    "@posthog/types" "^1.402.2"
     core-js "^3.49.0"
     dompurify "^3.4.12"
     fflate "^0.4.8"
