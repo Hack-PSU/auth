@@ -1132,17 +1132,29 @@
     "@posthog/core" "^1.46.8"
     "@posthog/types" "^1.402.0"
 
-"@posthog/core@^1.46.8", "@posthog/core@^1.46.9":
+"@posthog/core@^1.46.8":
   version "1.46.9"
   resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.46.9.tgz#c76ee98638ce263efec83e1dc974552a02b9674e"
   integrity sha512-EXO6y5ih+jBkTCpUCuYgQmajuDZuvy6vMvflkub6pLQyi0GPlCPWVSvZZkOeQw9e2MxoD5GteeGCt9R8+UJ/yQ==
   dependencies:
     "@posthog/types" "^1.402.2"
 
-"@posthog/types@^1.402.0", "@posthog/types@^1.402.2":
+"@posthog/core@^1.46.9":
+  version "1.47.0"
+  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.47.0.tgz#381f7d5e93c38b43bb83489a3847a0d97eb3c1b7"
+  integrity sha512-LW62V+9yx7G7mLd+EYpwW0PiaPZI8XRJ1tLuhw+9fXHpugLp8XQD5JuCQ2kIXvoUfyx1DpKfGQY3dUnzMOIn7Q==
+  dependencies:
+    "@posthog/types" "^1.402.2"
+
+"@posthog/types@^1.402.0":
   version "1.402.2"
   resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.402.2.tgz#13a82f000a76b2ca9265d2e880f16cf9376a1b16"
   integrity sha512-ZZTiS4dLwF4/D0YTzS3gGSLFnhuNOY5yu4d9VGS9trGe5GW6FjIXo20p18K5BPW2RZSYSld8sdnSAY3AUXleUQ==
+
+"@posthog/types@^1.402.2":
+  version "1.402.3"
+  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.402.3.tgz#bedcbdaede9b14c11f9b8d4fe20234eb1acd751f"
+  integrity sha512-nnqKIGUqggeNbCZg6of/hYN+4shYZUoPFkILIIpYq0p9HDX8PgOrnrtBAUH8kr1MOmDh2nm+fY5Ceks7A5y6BQ==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -3968,11 +3980,11 @@ posthog-js@^1.257.0:
     web-vitals-soft-navs "npm:web-vitals@6.0.0"
 
 posthog-node@^5.5.1:
-  version "5.48.0"
-  resolved "https://registry.yarnpkg.com/posthog-node/-/posthog-node-5.48.0.tgz#d93c4d6644782e509fe52c4697f9350562a6eddc"
-  integrity sha512-YIH82XV24aa1nnVph1ndiW/vBN2QDIKlrHNEJcmAYutMGeoGC4WeEefg7O5aD3dDcO5dzociy8sVwXq4tNDYsQ==
+  version "5.48.1"
+  resolved "https://registry.yarnpkg.com/posthog-node/-/posthog-node-5.48.1.tgz#ca709afe0eec770155aed017a09ed64537359e35"
+  integrity sha512-BxLX2SqGEQhPqCPTalpyo0RRv1NMbf7UaN7q9d/ED77ksD6XOmE7ko2vIKO8F0zPL1NtKxIi+DYXap9lvR0RaA==
   dependencies:
-    "@posthog/core" "^1.46.8"
+    "@posthog/core" "^1.46.9"
 
 preact@^10.29.3:
   version "10.29.8"
