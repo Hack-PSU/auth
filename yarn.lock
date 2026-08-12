@@ -1124,46 +1124,22 @@
     tslib "^2.8.1"
     tsyringe "^4.10.0"
 
-"@posthog/browser-common@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@posthog/browser-common/-/browser-common-0.4.0.tgz#b25c5af2aed27a5c2ddc2d4b2244e26dee710356"
-  integrity sha512-W9DCGVks15docUMPvJ2nd8NS16Gn74bsGWuaeg31beEKFSjdW8wvnQ1ETY6WSql5pYxZb3GdJmEUZVVstKSrBQ==
+"@posthog/browser-common@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@posthog/browser-common/-/browser-common-0.5.0.tgz#792d7f9840f808be4581c675ccc47a3761ba0c78"
+  integrity sha512-8DaxVZS1bQPbA514RePurLNbYjei3P4jhnC206DwVv5XThmZM3QdlsXenI2ujE3pLbgQ79hYn9o1Kda8I3WK/Q==
   dependencies:
-    "@posthog/core" "^1.46.8"
-    "@posthog/types" "^1.402.0"
-
-"@posthog/core@^1.46.8":
-  version "1.46.9"
-  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.46.9.tgz#c76ee98638ce263efec83e1dc974552a02b9674e"
-  integrity sha512-EXO6y5ih+jBkTCpUCuYgQmajuDZuvy6vMvflkub6pLQyi0GPlCPWVSvZZkOeQw9e2MxoD5GteeGCt9R8+UJ/yQ==
-  dependencies:
+    "@posthog/core" "^1.47.0"
     "@posthog/types" "^1.402.2"
 
-"@posthog/core@^1.46.9":
-  version "1.47.0"
-  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.47.0.tgz#381f7d5e93c38b43bb83489a3847a0d97eb3c1b7"
-  integrity sha512-LW62V+9yx7G7mLd+EYpwW0PiaPZI8XRJ1tLuhw+9fXHpugLp8XQD5JuCQ2kIXvoUfyx1DpKfGQY3dUnzMOIn7Q==
-  dependencies:
-    "@posthog/types" "^1.402.2"
-
-"@posthog/core@^1.47.1":
+"@posthog/core@^1.47.0", "@posthog/core@^1.47.1":
   version "1.47.1"
   resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.47.1.tgz#11c315db43c85decf7ce3b5e0083d930b4ac0d01"
   integrity sha512-d38C5DulL3gCox4g0VGyb/Lhn548fBvj9f35LZGVasPspOs3jyApxROJyDXoWwIRivOjCOIShZQAdYkZVn9J3w==
   dependencies:
     "@posthog/types" "^1.403.0"
 
-"@posthog/types@^1.402.0":
-  version "1.402.2"
-  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.402.2.tgz#13a82f000a76b2ca9265d2e880f16cf9376a1b16"
-  integrity sha512-ZZTiS4dLwF4/D0YTzS3gGSLFnhuNOY5yu4d9VGS9trGe5GW6FjIXo20p18K5BPW2RZSYSld8sdnSAY3AUXleUQ==
-
-"@posthog/types@^1.402.2":
-  version "1.402.3"
-  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.402.3.tgz#bedcbdaede9b14c11f9b8d4fe20234eb1acd751f"
-  integrity sha512-nnqKIGUqggeNbCZg6of/hYN+4shYZUoPFkILIIpYq0p9HDX8PgOrnrtBAUH8kr1MOmDh2nm+fY5Ceks7A5y6BQ==
-
-"@posthog/types@^1.403.0":
+"@posthog/types@^1.402.2", "@posthog/types@^1.403.0":
   version "1.403.0"
   resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.403.0.tgz#ab141d5ec2ffc79bd8a3c01baa3ff7df0e1a4382"
   integrity sha512-QbkO0epmdq38xhxwP214YRi0vgpZiXqhamaTjKT6kVGJYTtsE5qZ1GTgLp12IYehg/rd+whYYErH3/DeX8pj3Q==
@@ -2180,7 +2156,7 @@ doctrine@^2.1.0:
   dependencies:
     esutils "^2.0.2"
 
-dompurify@^3.4.12:
+dompurify@^3.4.13:
   version "3.4.13"
   resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-3.4.13.tgz#fc28949d59f92d62e28a3a764bcbeee35897a1be"
   integrity sha512-2vmYIoqjze2d+kakP8S/nS5shfsl587kzwEjcGlTdiksUVgFHnFCsLYDVj/JNqJVOQZGSYBTmuycv0PodwmnMQ==
@@ -3976,15 +3952,15 @@ postcss@^8.5.16:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.413.3"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.413.3.tgz#0f4c48276ed1e8bc88078bede3ffb38b5df692ac"
-  integrity sha512-UoAymtZYVr84Ldp0ITXmlK4Q3GE8vU7GW8wC+aCput5RrKVJ8wkAPc12n3ElmKRlvLL+oD+Fotjc7n3wYG0RGQ==
+  version "1.416.0"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.416.0.tgz#362d4b6a6294b77fc70b45595bcd6cb72f3ab6e1"
+  integrity sha512-9Rd0tq2WTA1U07VucWuCMwlzr+YvODglyN4mOf61TVrxPeMA7KVBiOEAThqaIvAv2kHbZvwTjbd8Ww2oTs221w==
   dependencies:
-    "@posthog/browser-common" "^0.4.0"
-    "@posthog/core" "^1.46.9"
-    "@posthog/types" "^1.402.2"
+    "@posthog/browser-common" "^0.5.0"
+    "@posthog/core" "^1.47.0"
+    "@posthog/types" "^1.403.0"
     core-js "^3.49.0"
-    dompurify "^3.4.12"
+    dompurify "^3.4.13"
     fflate "^0.4.8"
     preact "^10.29.3"
     query-selector-shadow-dom "^1.0.1"
