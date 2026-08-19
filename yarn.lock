@@ -1132,10 +1132,10 @@
     "@posthog/core" "^1.47.0"
     "@posthog/types" "^1.402.2"
 
-"@posthog/core@^1.47.0", "@posthog/core@^1.48.3":
-  version "1.48.3"
-  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.48.3.tgz#a6330399ee83dc67a64e8bd8cc25b7c154204e27"
-  integrity sha512-kwVDVvwtCTXctApA2tpnwDjDDan8LrkwCW1Wv6PABaVs/s5ahbQ9W3pvdXcqr71HCuqukSA1jp7MySczebubGg==
+"@posthog/core@^1.47.0", "@posthog/core@^1.48.5":
+  version "1.48.5"
+  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.48.5.tgz#874bfcfbeafb85d888498e4c3e2ed62ad7a618d4"
+  integrity sha512-ZE27PmVyPmw9wZOVVyn64uaTdqhopuwQfX7PzBpyCvsezuvNmrUHAMpJKkqOvaHxu7HeJt1jTQtjtTuwy+S7Og==
   dependencies:
     "@posthog/types" "^1.405.0"
 
@@ -2164,9 +2164,9 @@ doctrine@^2.1.0:
     esutils "^2.0.2"
 
 dompurify@^3.4.13:
-  version "3.4.13"
-  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-3.4.13.tgz#fc28949d59f92d62e28a3a764bcbeee35897a1be"
-  integrity sha512-2vmYIoqjze2d+kakP8S/nS5shfsl587kzwEjcGlTdiksUVgFHnFCsLYDVj/JNqJVOQZGSYBTmuycv0PodwmnMQ==
+  version "3.4.14"
+  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-3.4.14.tgz#a789edb2c7bcdb69a93713a34edb7e0a5245d8c9"
+  integrity sha512-dVoH9z+MY+C9IilgGCk3YfFqjLi3fChm2OiKJMzh6axrJ5qwxqWaZamgmHrpv22CN/KdbZJuGEGgfQoL00LTdg==
   optionalDependencies:
     "@types/trusted-types" "^2.0.7"
 
@@ -3959,12 +3959,12 @@ postcss@^8.5.16:
     source-map-js "^1.2.1"
 
 posthog-js@^1.257.0:
-  version "1.418.1"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.418.1.tgz#5cc950a15242b859cdbf3b52e955a11be63441e6"
-  integrity sha512-gGJSGE1sTRcnK53TvZpoFzVBaFTE37NpgGykeQzb6CACx34piy6SFtp5wudFSo49taqFMZdcNG/TrnfJVx0YQw==
+  version "1.418.5"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.418.5.tgz#e8efe6c6a7373b3cd7c6584c09b2d592d0fad645"
+  integrity sha512-Ju3vRsQtr5gjd+3Hwax2sFETOlwkpx2my38RlIDssk1SIf5FFiLDbp9qZcf3OgWAwRlctfFkcpO7fvsA2NpPuw==
   dependencies:
     "@posthog/browser-common" "^0.5.0"
-    "@posthog/core" "^1.48.3"
+    "@posthog/core" "^1.48.5"
     "@posthog/types" "^1.405.0"
     core-js "^3.49.0"
     dompurify "^3.4.13"
