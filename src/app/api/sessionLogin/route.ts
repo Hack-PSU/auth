@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
   const origin = req.headers.get("origin");
 
   try {
-    const { idToken } = await req.json();
+    const { idToken, returnTo = null } = await req.json();
 
     if (!idToken) {
       const response = NextResponse.json(
@@ -32,8 +32,10 @@ export async function POST(req: NextRequest) {
       .auth()
       .createSessionCookie(idToken, { expiresIn: SESSION_DURATION_MS });
 
-    const useCookies = shouldUseCookieAuth(origin);
-    const cookieHeader = createSessionCookie(sessionCookie, origin);
+    // returnTo decides this, not origin: the login page posts here from
+    // auth.hackpsu.org even when the session is bound for localhost.
+    const useCookies = shouldUseCookieAuth(origin, returnTo);
+    const cookieHeader = createSessionCookie(sessionCookie, origin, returnTo);
 
     // Response payload
     const responseData: { status: string; token?: string } = {
