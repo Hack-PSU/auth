@@ -1,5 +1,6 @@
 "use client";
 
+import { resolveReturnTo } from "@/lib/auth-utils";
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm, FormProvider } from "react-hook-form";
@@ -33,7 +34,10 @@ interface FormData {
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const returnTo = searchParams?.get("returnTo") || "https://hackpsu.org";
+  // returnTo is attacker-controllable and a session token is appended to it
+  // below, so only known HackPSU, Vercel preview and localhost origins are
+  // honoured.
+  const returnTo = resolveReturnTo(searchParams?.get("returnTo") ?? null);
 
   const {
     user,
@@ -45,6 +49,7 @@ function LoginForm() {
     logout,
     isLoading,
     resetPassword,
+    sessionToken,
   } = useFirebase();
 
   const [loginError, setLoginError] = useState<string>("");
@@ -69,12 +74,28 @@ function LoginForm() {
     setWebAuthnSupported(isWebAuthnSupported());
   }, []);
 
-  // Redirect on successful login
+  // Redirect on successful login.
+  //
+  // When the destination cannot read the .hackpsu.org cookie, such as a
+  // developer on localhost, the server hands back a session token instead and
+  // it rides along in the URL for the app to pick up.
   useEffect(() => {
-    if (!isLoading && user) {
+    if (isLoading || !user) return;
+
+    if (!sessionToken) {
+      router.push(returnTo);
+      return;
+    }
+
+    try {
+      const url = new URL(returnTo);
+      url.searchParams.set("authToken", sessionToken);
+      window.location.href = url.toString();
+    } catch {
+      // A relative returnTo stays on this origin, where the cookie works.
       router.push(returnTo);
     }
-  }, [isLoading, user, router, returnTo]);
+  }, [isLoading, user, router, returnTo, sessionToken]);
 
   const onSubmit = async (data: FormData) => {
     setProcessing(true);

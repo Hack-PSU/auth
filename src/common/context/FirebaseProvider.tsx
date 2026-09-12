@@ -64,6 +64,11 @@ type FirebaseContextType = {
   isAuthenticated: boolean;
   user?: User;
   token?: string;
+  /**
+   * Session token for destinations that cannot use the .hackpsu.org cookie,
+   * such as a developer on localhost. Undefined whenever the cookie works.
+   */
+  sessionToken?: string;
   error?: string;
   login(email: string, pass: string): Promise<void>;
   signup(email: string, pass: string): Promise<void>;
@@ -83,16 +88,37 @@ export const FirebaseProvider: FC<Props> = ({ children }) => {
   const [token, setToken] = useState<string | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | undefined>(undefined);
+  // Set only when the server could not use a cookie for this destination.
+  const [sessionToken, setSessionToken] = useState<string | undefined>(
+    undefined,
+  );
 
-  // Helper: call sessionLogin endpoint with ID token
+  // Helper: call sessionLogin endpoint with ID token.
+  //
+  // returnTo travels with the request because the server decides cookie versus
+  // token auth from where the session is going, not from this page's origin. A
+  // session bound for localhost gets a token back, since a cookie scoped to
+  // .hackpsu.org would be unreadable there.
   const createSession = useCallback(async (idToken: string) => {
     const authServiceURL = getAuthServiceURL();
-    await fetch(`${authServiceURL}/api/sessionLogin`, {
+    const returnTo =
+      typeof window !== "undefined"
+        ? new URLSearchParams(window.location.search).get("returnTo")
+        : null;
+
+    const res = await fetch(`${authServiceURL}/api/sessionLogin`, {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ idToken }),
+      body: JSON.stringify({ idToken, returnTo }),
     });
+
+    try {
+      const body = await res.json();
+      setSessionToken(body?.token);
+    } catch {
+      // A cookie-based session returns no token, which is the normal case.
+    }
   }, []);
 
   // Helper: call sessionLogout endpoint
@@ -245,6 +271,7 @@ export const FirebaseProvider: FC<Props> = ({ children }) => {
       isAuthenticated: !!user,
       user: user || undefined,
       token,
+      sessionToken,
       error,
       login,
       signup,
@@ -254,7 +281,7 @@ export const FirebaseProvider: FC<Props> = ({ children }) => {
       resetPassword,
       logout,
     }),
-    [isLoading, user, token, error],
+    [isLoading, user, token, sessionToken, error],
   );
 
   return (

@@ -1,57 +1,25 @@
 import { NextResponse } from "next/server";
 import { serialize, type SerializeOptions } from "cookie";
+import {
+  getEnvironmentForSession,
+  isOriginAllowed,
+  shouldUseCookieAuth,
+} from "./auth-environment";
+
+// Re-exported so existing importers keep working.
+export {
+  getEnvironmentFromOrigin,
+  getEnvironmentForSession,
+  isOriginAllowed,
+  shouldUseCookieAuth,
+  resolveReturnTo,
+  buildReturnUrl,
+} from "./auth-environment";
+export type { Environment } from "./auth-environment";
 
 /**
  * Environment detection based on origin
  */
-export type Environment = "production" | "staging" | "local";
-
-export function getEnvironmentFromOrigin(origin: string | null): Environment {
-  if (!origin) return "local";
-
-  // Production: *.hackpsu.org domains
-  if (origin.endsWith(".hackpsu.org") || origin === "https://hackpsu.org") {
-    return "production";
-  }
-
-  // Staging: *.vercel.app domains
-  if (origin.endsWith(".vercel.app")) {
-    return "staging";
-  }
-
-  // Everything else is local (localhost, 127.0.0.1, custom domains)
-  return "local";
-}
-
-/**
- * Validates if an origin is allowed for CORS
- */
-export function isOriginAllowed(origin: string | null): boolean {
-  if (!origin) return false;
-
-  // Production domains
-  if (origin === "https://hackpsu.org" || origin.endsWith(".hackpsu.org")) {
-    return true;
-  }
-
-  // Staging domains (all Vercel deployments)
-  if (origin.endsWith(".vercel.app")) {
-    return true;
-  }
-
-  // Local development (any protocol, any port)
-  if (
-    origin.startsWith("http://localhost") ||
-    origin.startsWith("https://localhost") ||
-    origin.startsWith("http://127.0.0.1") ||
-    origin.startsWith("https://127.0.0.1")
-  ) {
-    return true;
-  }
-
-  return false;
-}
-
 /**
  * Sets CORS headers on a response for cross-origin requests
  */
@@ -92,8 +60,9 @@ export const SESSION_DURATION_MS = 5 * 24 * 60 * 60 * 1000; // 5 days
  */
 export function getCookieConfig(
   origin: string | null,
+  returnTo: string | null = null,
 ): Pick<SerializeOptions, "domain" | "secure" | "sameSite"> {
-  const env = getEnvironmentFromOrigin(origin);
+  const env = getEnvironmentForSession(origin, returnTo);
 
   switch (env) {
     case "production":
@@ -117,20 +86,14 @@ export function getCookieConfig(
 }
 
 /**
- * Determines if we should use cookie-based or token-based auth
- */
-export function shouldUseCookieAuth(origin: string | null): boolean {
-  return getEnvironmentFromOrigin(origin) === "production";
-}
-
-/**
  * Creates a session cookie header
  */
 export function createSessionCookie(
   sessionToken: string,
   origin: string | null,
+  returnTo: string | null = null,
 ): string {
-  const cookieConfig = getCookieConfig(origin);
+  const cookieConfig = getCookieConfig(origin, returnTo);
 
   return serialize(SESSION_COOKIE_NAME, sessionToken, {
     httpOnly: true,
@@ -187,28 +150,3 @@ export function createLogoutCookies(origin: string | null): string[] {
   return deleteCookies;
 }
 
-/**
- * Extracts returnTo URL from request and appends auth token for staging/local
- */
-export function buildReturnUrl(
-  returnTo: string | null,
-  token: string,
-  origin: string | null,
-): string {
-  if (!returnTo) return "/";
-
-  // For production, cookies work, so no need to pass token
-  if (shouldUseCookieAuth(origin)) {
-    return returnTo;
-  }
-
-  // For staging/local, append token to URL
-  try {
-    const url = new URL(returnTo);
-    url.searchParams.set("authToken", token);
-    return url.toString();
-  } catch {
-    // If returnTo is not a valid URL, return as-is
-    return returnTo;
-  }
-}
