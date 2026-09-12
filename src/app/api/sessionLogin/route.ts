@@ -5,6 +5,7 @@ import {
   createSessionCookie,
   SESSION_DURATION_MS,
   shouldUseCookieAuth,
+  resolveReturnTo,
 } from "@/lib/auth-utils";
 
 export async function OPTIONS(req: NextRequest) {
@@ -17,7 +18,12 @@ export async function POST(req: NextRequest) {
   const origin = req.headers.get("origin");
 
   try {
-    const { idToken, returnTo = null } = await req.json();
+    const { idToken, returnTo: rawReturnTo = null } = await req.json();
+
+    // The body is as untrusted as the query string it came from, and this value
+    // decides whether a token is minted. Resolve it against the allowlist here
+    // too rather than relying on the caller having done so.
+    const returnTo = resolveReturnTo(rawReturnTo);
 
     if (!idToken) {
       const response = NextResponse.json(
