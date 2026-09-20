@@ -7,6 +7,42 @@
 
 export type Environment = "production" | "staging" | "local";
 
+/**
+ * Cloud Run services belonging to HackPSU's own GCP project.
+ *
+ * Cloud Run derives its generated hostname from the service name and the
+ * project number:
+ *
+ *     https://<service>-<project-number>.<region>.run.app
+ *
+ * so the project number identifies who owns the service. Allowing `.run.app`
+ * outright would let anyone deploy a Cloud Run service and be handed a
+ * HackPSU session token by buildReturnUrl, which is the same class of problem
+ * resolveReturnTo exists to prevent.
+ *
+ * A service in someone else's project cannot forge this: naming their service
+ * `foo-695455897614` yields `foo-695455897614-<their-number>.<region>.run.app`,
+ * whose first label ends with *their* project number, not ours.
+ */
+const CLOUD_RUN_PROJECT_NUMBER =
+  process.env.CLOUD_RUN_PROJECT_NUMBER ?? "695455897614";
+
+function isHackPsuCloudRunOrigin(origin: string): boolean {
+  let url: URL;
+  try {
+    url = new URL(origin);
+  } catch {
+    return false;
+  }
+
+  // Cloud Run only ever serves these over TLS.
+  if (url.protocol !== "https:") return false;
+  if (!url.hostname.endsWith(".run.app")) return false;
+
+  const [service] = url.hostname.split(".");
+  return service.endsWith(`-${CLOUD_RUN_PROJECT_NUMBER}`);
+}
+
 export function getEnvironmentFromOrigin(origin: string | null): Environment {
   if (!origin) return "local";
 
@@ -15,8 +51,13 @@ export function getEnvironmentFromOrigin(origin: string | null): Environment {
     return "production";
   }
 
-  // Staging: *.vercel.app domains
-  if (origin.endsWith(".vercel.app")) {
+  // Staging: *.vercel.app domains, and our own Cloud Run services.
+  //
+  // Cloud Run belongs here rather than in the "local" fallback: it is a real
+  // HTTPS deployment, so its cookies must be marked Secure, but it is not on
+  // hackpsu.org, so it cannot read the shared session cookie and has to use
+  // the token handoff -- exactly the staging case.
+  if (origin.endsWith(".vercel.app") || isHackPsuCloudRunOrigin(origin)) {
     return "staging";
   }
 
@@ -63,6 +104,11 @@ export function isOriginAllowed(origin: string | null): boolean {
 
   // Staging domains (all Vercel deployments)
   if (origin.endsWith(".vercel.app")) {
+    return true;
+  }
+
+  // Our own Cloud Run services, e.g. the Gavel judging app.
+  if (isHackPsuCloudRunOrigin(origin)) {
     return true;
   }
 
