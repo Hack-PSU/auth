@@ -1172,13 +1172,14 @@
     tslib "^2.8.1"
     tsyringe "^4.10.0"
 
-"@posthog/browser-common@^0.10.2":
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/@posthog/browser-common/-/browser-common-0.10.2.tgz#e26ab8e768c638b18d9a32ac63fb1e5a19bf3b8b"
-  integrity sha512-ieHSMmY4xG+HfkMTrT9yZoG0NMBWyA4aXMFPCuOOV+xRe706+zoPuwqmNHXv7LGXfi6CvOv4qksEoPNWfP359Q==
+"@posthog/browser-common@^0.10.7":
+  version "0.10.7"
+  resolved "https://registry.yarnpkg.com/@posthog/browser-common/-/browser-common-0.10.7.tgz#a4b1acac9d3166d8f7da045b0bf5f2d3d89b88c0"
+  integrity sha512-1V2SBu7gxVbroZk49YsCM++K9qy3qcrOaylemjkkTPvACgAGwm0Y/AkJN2eRZO1YME0FnagF6QKBaXmq3o0e8g==
   dependencies:
-    "@posthog/core" "^1.61.2"
-    "@posthog/types" "^1.418.0"
+    "@posthog/core" "^1.63.2"
+    "@posthog/types" "^1.420.0"
+    dompurify "^3.4.13"
     preact "^10.29.3"
 
 "@posthog/core@^1.61.2":
@@ -1188,10 +1189,22 @@
   dependencies:
     "@posthog/types" "^1.418.0"
 
+"@posthog/core@^1.63.2", "@posthog/core@^1.64.1":
+  version "1.64.1"
+  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.64.1.tgz#532ab52eb0370e9c4da0613f867e6ddf9d550559"
+  integrity sha512-2ziryOLWTxftHrTLhGYQzLHDpPughaRRi/+L1vhg4cQFHJfgTevMzAz21R1zR7MKFDkyJ9lCJD/K2jxIkGbnfg==
+  dependencies:
+    "@posthog/types" "^1.421.0"
+
 "@posthog/types@^1.418.0":
   version "1.418.0"
   resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.418.0.tgz#5dabde5adedc147a96565ffb68ea674625e34a99"
   integrity sha512-WqDXUWH1R8OilBp2PfDpQIRZSCs3QyOnw7H3YK7lvZLCMIsOqSZAKJrrqYWt4f7FvnVCACRuNGCC0HKh3J/HWw==
+
+"@posthog/types@^1.420.0", "@posthog/types@^1.421.0", "@posthog/types@^1.421.1":
+  version "1.421.1"
+  resolved "https://registry.yarnpkg.com/@posthog/types/-/types-1.421.1.tgz#8e35f5d08b10d11c9809f24f55fc19276c3c2e6f"
+  integrity sha512-475eg+usYiQ2m7GfxgylnBTVa3aPsEfaE6gQoDvg5nEkWAjcNiGm1u3WsESOErfrFFUajpYcxc71JCzfdoJ8gg==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -3975,13 +3988,13 @@ postcss@^8.5.25:
     source-map-js "^1.2.2"
 
 posthog-js@^1.257.0:
-  version "1.442.1"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.442.1.tgz#cef367a0d7943a47087c3c33151bb43258a2ca5f"
-  integrity sha512-tk75+K4Ti13cli/oMWRd69gjdU6zxD/pgGj956rX2Ke69pt6NrGuGMKhSozgQtVYUA4em6e0h8Q0ZxYhAvAvIA==
+  version "1.447.3"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.447.3.tgz#c1c718047cd0b83882dc5dc00dacf9749813a1e8"
+  integrity sha512-tNuh/o65vIzvm+n60oFYNUxaM7JsSrsFGY9fPu2DvB0ZCU2qOeai8jl+D7JUV+iJ9kiXHX0R6JUAAhq/1GbjzA==
   dependencies:
-    "@posthog/browser-common" "^0.10.2"
-    "@posthog/core" "^1.61.2"
-    "@posthog/types" "^1.418.0"
+    "@posthog/browser-common" "^0.10.7"
+    "@posthog/core" "^1.64.1"
+    "@posthog/types" "^1.421.1"
     core-js "^3.49.0"
     dompurify "^3.4.13"
     fflate "^0.4.8"
